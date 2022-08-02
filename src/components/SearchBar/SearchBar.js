@@ -1,7 +1,10 @@
+import './SearchBar.scss';
+
 function SearchBar() {
     return (
-        <div>
-            <input type = 'search'></input>
+        <div className="search__container">
+            <input className="search__input" type="search"></input>
+            <button className="search__button" type="submit">Search</button>
         </div>
     );
 }

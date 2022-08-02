@@ -1,1 +1,12 @@
 @use '../../styles/partials/breakpoints' as *;
+
+.search {
+    &__container {
+        display: flex;
+        justify-content: center;
+    }
+    &__button, &__input {
+        border-radius: 30px;
+        border: 1px solid black;
+    }
+}
