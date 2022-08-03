@@ -1,7 +1,9 @@
 import './App.css';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import HomePage from './pages/HomePage/HomePage';
-import About from './pages/AboutPage/AboutPage';
+import ListPage from './pages/ListPage/ListPage';
+import AboutPage from './pages/AboutPage/AboutPage';
+import ContactPage from './pages/ContactPage/ContactPage';
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
 import MobileSideBar from './components/MobileSideBar/MobileSideBar';
@@ -17,9 +19,9 @@ function App() {
       {tablet && <Header />}
       <Switch>
         <Route path='/' exact component={HomePage}/>
-        <Route path='/destination/:id' />
-        <Route path='/about' component={About}/>
-        <Route path='/contact' />
+        <Route path='/destination/:id' component={ListPage}/>
+        <Route path='/about' component={AboutPage}/>
+        <Route path='/contact' component={ContactPage}/>
       </Switch>
       <Footer />
     </Router>
