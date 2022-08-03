@@ -1,16 +1,20 @@
 import './Footer.scss'
+import { Link } from 'react-router-dom';
 
 function Footer() {
     return (
         <footer className="footer">
             <ul className="footer__list">
-                <li className="footer__item">
-                    About
-                </li>
-                <li className="footer__item">
-                    Contact
-                </li>
-
+                <Link to='/about' className='footer__link'>
+                    <li className="footer__item">
+                        About
+                    </li>
+                </Link>
+                <Link to='/contact' className='footer__link'>
+                    <li className="footer__item">
+                        Contact
+                    </li>
+                </Link>
             </ul>
         </footer>
     );
