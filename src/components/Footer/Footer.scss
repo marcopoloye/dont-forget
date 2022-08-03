@@ -1,10 +1,8 @@
 @use '../../styles/partials/breakpoints' as *;
 
 .footer {
-    position: absolute;
+    position: relative;
     bottom: 0;
-    width: 100%;
-
     &__list {
         display: flex;
         justify-content: center;
