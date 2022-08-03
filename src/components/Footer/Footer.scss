@@ -3,15 +3,28 @@
 .footer {
     position: absolute;
     bottom: 0;
+    width: 100%;
+
     &__list {
         display: flex;
         justify-content: center;
         list-style: none;
         padding-left: 0;
-        margin: 0;
+        margin: 0 auto;
         padding: 1rem 0;
     }
-    &__item {
-        padding: 0 2rem;
+    &__link {
+        text-decoration: none;
+        width: 50%;
+        display: flex;
+        justify-content: center;
+    }
+
+    @include tablet {
+        
+        &__link {
+            width: auto;
+            padding: 0 2rem;
+        }
     }
 }
