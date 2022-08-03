@@ -1,10 +1,19 @@
 import './SearchBar.scss';
 
 function SearchBar() {
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        console.log(e.target[0].value);
+        
+    }
+
     return (
         <div className="search__container">
-            <input className="search__input" type="search"></input>
-            <button className="search__button" type="submit">Search</button>
+            <form onSubmit={handleSubmit}>
+                <input className="search__input" type="search"></input>
+                <button className="search__button" type="submit">Search</button>
+            </form>
         </div>
     );
 }
