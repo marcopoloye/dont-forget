@@ -1,7 +1,7 @@
 import './App.css';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import HomePage from './pages/HomePage/HomePage';
-import About from './pages/About';
+import About from './pages/About/About';
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
 import MobileSideBar from './components/MobileSideBar/MobileSideBar';
