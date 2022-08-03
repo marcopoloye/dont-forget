@@ -5,10 +5,20 @@ import { Link } from 'react-router-dom';
 
 function MobileSideBar() {
     return (
-        <Menu>
-            <Link to='/about'>
+        <Menu width={200}>
+            <Link to='/'>
                 <p className="menu-item">
-                    Test
+                    Home
+                </p>
+            </Link>
+            <Link to='/'>
+                <p className="menu-item">
+                    My Lists
+                </p>
+            </Link>
+            <Link to='/'>
+                <p className="menu-item">
+                    Profile
                 </p>
             </Link>
         </Menu>
