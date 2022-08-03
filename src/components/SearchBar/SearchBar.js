@@ -1,5 +1,6 @@
 import './SearchBar.scss';
 
+
 function SearchBar() {
 
     const handleSubmit = (e) => {
