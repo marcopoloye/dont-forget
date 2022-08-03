@@ -1,12 +1,39 @@
 import './SearchBar.scss';
-
+import axios from 'axios';
 
 function SearchBar() {
 
+    const API_KEY = process.env.REACT_APP_WEATHER_API_KEY;
+
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(e.target[0].value);
-        
+
+        const searchValue = e.target[0].value;
+
+        if (!searchValue) {
+            console.log('empty');
+        } else {
+            axios
+            .get(`http://api.openweathermap.org/geo/1.0/direct?q=${e.target[0].value}&appid=${API_KEY}`)
+            .then (result => {
+                console.log(result)
+                const latitude = result.data[0].lat;
+                const longitude = result.data[0].lon;
+                axios
+                    .get(`https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${API_KEY}`)
+                    .then (result => {
+                        console.log('id', result.data.id)
+                        const temperature = Math.round((result.data.main.temp) - 273.15)
+                        console.log(temperature)
+                    })
+                    .catch(error => {
+                        console.log('Error')
+                    })
+            })
+            .catch(error => {
+                console.log('Error getting destination')
+            })
+        }
     }
 
     return (
