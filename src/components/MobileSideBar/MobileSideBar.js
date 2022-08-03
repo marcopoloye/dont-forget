@@ -11,12 +11,12 @@ function MobileSideBar() {
                     Home
                 </p>
             </Link>
-            <Link to='/'>
+            <Link to='/my-lists'>
                 <p className="menu-item">
                     My Lists
                 </p>
             </Link>
-            <Link to='/'>
+            <Link to='/profile'>
                 <p className="menu-item">
                     Profile
                 </p>
