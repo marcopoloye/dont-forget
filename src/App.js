@@ -1,7 +1,7 @@
 import './App.css';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import HomePage from './pages/HomePage/HomePage';
-import ListPage from './pages/ListPage/ListPage';
+// import ListPage from './pages/ListPage/ListPage';
 import AboutPage from './pages/AboutPage/AboutPage';
 import ContactPage from './pages/ContactPage/ContactPage';
 import Header from './components/Header/Header';
@@ -19,7 +19,7 @@ function App() {
       {tablet && <Header />}
       <Switch>
         <Route path='/' exact component={HomePage}/>
-        <Route path='/destination/:id' component={ListPage}/>
+        {/* <Route path='/destination/:id' component={ListPage}/> */}
         <Route path='/about' component={AboutPage}/>
         <Route path='/contact' component={ContactPage}/>
       </Switch>
