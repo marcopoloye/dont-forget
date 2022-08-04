@@ -1,9 +1,11 @@
 import './SearchBar.scss';
 import axios from 'axios';
+import React, { useState} from 'react';
 import { Link } from 'react-router-dom';
 
 
 function SearchBar() {
+    const [weatherData, setWeatherData] = useState('');
 
     const API_KEY = process.env.REACT_APP_WEATHER_API_KEY;
 
@@ -16,20 +18,12 @@ function SearchBar() {
             console.log('empty');
         } else {
             axios
-            .get (`http://api.openweathermap.org/geo/1.0/direct?q=${e.target[0].value}&appid=${API_KEY}`)
-            .then (result => {
-                const latitude = result.data[0].lat;
-                const longitude = result.data[0].lon;
-
-                axios
-                    .get (`https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${API_KEY}`)
-                    .then (result => {
-                        const temperature = Math.round((result.data.main.temp) - 273.15)
-                        console.log(temperature)
-                    })
-                    .catch ((error) => {
-                        console.log('Error', error);
-                    })
+            .get (`https://api.openweathermap.org/data/2.5/weather?q=${searchValue}&appid=${API_KEY}`)
+            .then (response => {
+                const temperature = Math.round((response.data.main.temp) - 273.15);
+                const city = response.data.name;
+                const country = response.data.sys.country;
+                setWeatherData(`It is currently ${temperature} °C in ${city}, ${country}`);
             })
             .catch ((error) => {
                 console.log('Error getting destination', error);
@@ -39,11 +33,14 @@ function SearchBar() {
         }
     }
 
+
     return (
         <div className="search__container">
+                <h3>{weatherData}</h3>
+            
             <form onSubmit={handleSubmit}>
-                <input className="search__input" type="search"></input>
-                    <button className="search__button" type="submit">Search</button>
+                <input className="search__input" type="search" placeholder='Enter a location'></input>
+                <button className="search__button" type="submit">Search</button>
             </form>
         </div>
     );
