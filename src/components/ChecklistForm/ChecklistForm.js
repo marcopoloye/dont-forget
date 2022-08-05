@@ -1,33 +1,26 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { v4 as uuid } from 'uuid';
 
-
-function ChecklistForm () {
-    const [checklist, setChecklist] = useState({
-        id: '',
-        item: '',
-        checked: false
-    });
+function ChecklistForm ({inputText, setInputText, items, setItems}) {
 
     const handleChange = (e) => {
-        setChecklist({...checklist, item: e.target.value});
-        console.log('change', e)
+        setInputText(e.target.value)
     }
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        const inputValue = e.target[0].value;
 
-        if (!checklist.item) {
-            console.log('empty input')
-        } else {
-            
+        if (inputValue) {
+            setItems([...items, {text: inputText, checked: false, id: uuid()}]);
+            setInputText('');
         }
-        console.log('submit', e)
     }
 
     return (
         <>
             <form onSubmit={handleSubmit}>
-                <input type='input' onChange={handleChange} value={checklist.item}/>
+                <input value={inputText} type='text' onChange={handleChange} placeholder='Add an item'/>
                 <button type='submit'>Add</button>
             </form>
         </>
