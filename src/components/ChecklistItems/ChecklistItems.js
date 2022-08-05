@@ -1,7 +1,7 @@
 import axios from 'axios';
 import './ChecklistItems.scss'
 
-function ChecklistItems({text, setItems, items, item}) {
+function ChecklistItems({itemName, setItems, items, item}) {
 
     const deleteHandler = () => {
         setItems(items.filter((el) => el.id !== item.id));
@@ -11,7 +11,7 @@ function ChecklistItems({text, setItems, items, item}) {
         setItems(items.map(selectedItem => {
             if (selectedItem.id === item.id) {
                 return {
-                    ...selectedItem, checked: !selectedItem.checked
+                    ...selectedItem, packed: !selectedItem.packed
                 }
             } return selectedItem
         }))
@@ -19,8 +19,8 @@ function ChecklistItems({text, setItems, items, item}) {
 
     return (
         <div>
-            <li className={`${item.checked ? 'completed' : ''}`}>
-                {text}
+            <li className={`${item.packed ? 'completed' : ''}`}>
+                {itemName}
             </li>
             <button onClick={deleteHandler}>delete</button>
             <button onClick={completeHandler}>done</button>

@@ -1,7 +1,7 @@
 import React from 'react';
 import { v4 as uuid } from 'uuid';
 import './ChecklistForm.scss'
-function ChecklistForm ({inputText, setInputText, items, setItems, checklist, setChecklist, locationInputText}) {
+function ChecklistForm ({inputText, setInputText, items, setItems, weatherData}) {
 
     const handleChange = (e) => {
         setInputText(e.target.value)
@@ -12,14 +12,26 @@ function ChecklistForm ({inputText, setInputText, items, setItems, checklist, se
         const inputValue = e.target[0].value;
 
         if (inputValue) {
-            setItems([...items, {text: inputText, checked: false, id: uuid()}]);
-            setInputText('');
+
+            if (items.findIndex(item => item.itemName.toLowerCase() === inputValue.toLowerCase()) !== -1) {
+                console.log('same value')
+            } else {
+                setItems([...items, {itemName: inputText, packed: false, id: uuid()}]);
+            }
+
+        } else {
+            console.log('empty input')
         }
+
+        // if (inputValue !== items.itemName) {
+        //     setItems([...items, {itemName: inputText, packed: false, id: uuid()}]);
+        //     setInputText('');
+        // }
     }
 
     return (
         <>
-            <form onSubmit={handleSubmit} className={`${locationInputText ? '' : 'main-form'}`}>
+            <form onSubmit={handleSubmit} className={`${weatherData ? '' : 'main-form'}`}>
                 <input value={inputText} type='text' onChange={handleChange} placeholder='Add an item'/>
                 <button type='submit'>Add</button>
             </form>

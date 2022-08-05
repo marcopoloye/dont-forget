@@ -19,7 +19,6 @@ function App() {
       {tablet && <Header />}
       <Switch>
         <Route path='/' exact component={HomePage}/>
-        {/* <Route path='/destination/:id' component={ListPage}/> */}
         <Route path='/about' component={AboutPage}/>
         <Route path='/contact' component={ContactPage}/>
       </Switch>
