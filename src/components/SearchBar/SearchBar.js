@@ -24,20 +24,19 @@ function SearchBar() {
                 const city = response.data.name;
                 const country = response.data.sys.country;
                 setWeatherData(`It is currently ${temperature} °C in ${city}, ${country}`);
+                console.log(response.data.id)
             })
             .catch ((error) => {
                 console.log('Error getting destination', error);
             })
-
-            
         }
     }
 
 
     return (
         <div className="search__container">
-                <h3>{weatherData}</h3>
-            
+            <h3>{weatherData}</h3>
+                
             <form onSubmit={handleSubmit}>
                 <input className="search__input" type="search" placeholder='Enter a location'></input>
                 <button className="search__button" type="submit">Search</button>
