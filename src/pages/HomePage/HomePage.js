@@ -10,15 +10,31 @@ function HomePage() {
 
     const [inputText, setInputText] = useState('');
     const [items, setItems] = useState([]);
-    const [locationInputText, setLocationInputText] = useState('')
+    const [locationInputText, setLocationInputText] = useState('');
+    const [checklist, setChecklist] = useState('')
 
     return (
         <div className='homepage'>
             <h1>home page</h1>
-            <SearchBar locationInputText={locationInputText} setLocationInputText={setLocationInputText}/>
-            <h2>packing list</h2>            
-            <ChecklistForm inputText={inputText} setInputText={setInputText} items={items} setItems={setItems}/>
-            <ChecklistList items={items} setItems={setItems}/>
+            <SearchBar 
+                locationInputText={locationInputText} 
+                setLocationInputText={setLocationInputText}
+            />
+        
+            <ChecklistForm 
+                inputText={inputText} 
+                setInputText={setInputText} 
+                items={items} 
+                setItems={setItems} 
+                checklist={checklist} 
+                setChecklist={setChecklist} 
+                locationInputText={locationInputText}
+            />
+            
+            <ChecklistList 
+                items={items} 
+                setItems={setItems}
+            />
         </div>
     );
 }

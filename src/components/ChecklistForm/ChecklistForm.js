@@ -1,7 +1,7 @@
 import React from 'react';
 import { v4 as uuid } from 'uuid';
-
-function ChecklistForm ({inputText, setInputText, items, setItems}) {
+import './ChecklistForm.scss'
+function ChecklistForm ({inputText, setInputText, items, setItems, checklist, setChecklist, locationInputText}) {
 
     const handleChange = (e) => {
         setInputText(e.target.value)
@@ -19,7 +19,7 @@ function ChecklistForm ({inputText, setInputText, items, setItems}) {
 
     return (
         <>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} className={`${locationInputText ? '' : 'main-form'}`}>
                 <input value={inputText} type='text' onChange={handleChange} placeholder='Add an item'/>
                 <button type='submit'>Add</button>
             </form>
