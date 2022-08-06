@@ -1,0 +1,13 @@
+@use '../../styles/partials/breakpoints' as *;
+
+.button {
+    border-radius: 30px;
+    border: 1px solid black;
+    cursor: pointer;
+
+    &--hidden {
+        display: none;
+    }
+}
+
+

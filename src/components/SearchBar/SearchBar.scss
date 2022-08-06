@@ -5,11 +5,8 @@
         display: flex;
         justify-content: center;
     }
-    &__button, &__input {
+    &__input {
         border-radius: 30px;
         border: 1px solid black;
-    }
-    &__button--hidden {
-        display: none;
     }
 }
