@@ -1,6 +1,7 @@
 import React from 'react';
 import { v4 as uuid } from 'uuid';
-import './ChecklistForm.scss'
+import './ChecklistForm.scss';
+import '../../styles/partials/_globals.scss';
 
 function ChecklistForm ({inputText, setInputText, items, setItems, weatherData}) {
 
@@ -23,14 +24,14 @@ function ChecklistForm ({inputText, setInputText, items, setItems, weatherData})
         } else {
             console.log('empty input')
         }
-
+        setInputText('')
     }
 
     return (
         <>
             <form onSubmit={handleSubmit} className={`${weatherData ? '' : 'main-form'}`}>
-                <input value={inputText} type='text' onChange={handleChange} placeholder='Add an item'/>
-                <button type='submit'>Add</button>
+                <input className='input'value={inputText} type='text' onChange={handleChange} placeholder='Add an item'/>
+                <button className='button' type='submit'>Add</button>
             </form>
         </>
     );

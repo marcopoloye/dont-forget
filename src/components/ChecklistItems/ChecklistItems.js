@@ -1,4 +1,5 @@
-import './ChecklistItems.scss'
+import './ChecklistItems.scss';
+import '../../styles/partials/_globals.scss';
 
 function ChecklistItems({itemName, setItems, items, item}) {
 
@@ -21,8 +22,8 @@ function ChecklistItems({itemName, setItems, items, item}) {
             <li className={`${item.packed ? 'completed' : ''}`}>
                 {itemName}
             </li>
-            <button onClick={deleteHandler}>delete</button>
-            <button onClick={completeHandler}>done</button>
+            <button className='button' onClick={deleteHandler}>delete</button>
+            <button className='button' onClick={completeHandler}>done</button>
         </div>
     );
 }

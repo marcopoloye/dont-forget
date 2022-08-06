@@ -1,5 +1,5 @@
 import './SearchBar.scss';
-import '../../styles/partials/_buttons.scss';
+import '../../styles/partials/_globals.scss';
 import axios from 'axios';
 import React, { useState} from 'react';
 import ChecklistForm from '../ChecklistForm/ChecklistForm';
@@ -90,7 +90,7 @@ function SearchBar({locationInput, setLocationInput}) {
                 <h3>{weatherData}</h3>
                     
                 <form onSubmit={handleSubmit}>
-                    <input className="search__input" type="text" placeholder='Enter a location' value={locationInput} onChange={handleInput}/>
+                    <input className="search__input input" type="text" placeholder='Enter a location' value={locationInput} onChange={handleInput}/>
                     <button className="search__button button" type="submit">Search</button>
                 </form>
             </div>
@@ -108,7 +108,7 @@ function SearchBar({locationInput, setLocationInput}) {
                 setItems={setItems}
             />
 
-            <button className={`${weatherData ? 'search__button-save button' : 'button--hidden'}`}>Save to my List</button>
+            <button className={`${weatherData ? 'search__button-save button' : 'button--hidden'}`}>Save to My List</button>
         </>
 
     );
