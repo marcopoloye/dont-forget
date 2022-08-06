@@ -29,7 +29,7 @@ function SearchBar({locationInput, setLocationInput}) {
                     const country = response.data.sys.country;
                     setWeatherData(`It is currently ${temperature} °C in ${city}, ${country}`);
                     
-                    if (`${temperature}` > 20) {
+                    if (`${temperature}` >= 20) {
                         axios
                         .get (`http://localhost:8080/summer-items`)
                         .then (response => {
@@ -37,9 +37,29 @@ function SearchBar({locationInput, setLocationInput}) {
                             setItems(itemsList)
                         })
                         .catch ((error) => {
-                            console.log('Error getting destination', error);
+                            console.log('Error getting items', error);
                         });
-                    } else if (`${temperature}` < 20) {
+                    } else if (`${temperature}` < 20 && `${temperature}` > 14) {
+                        axios
+                        .get (`http://localhost:8080/spring-items`)
+                        .then (response => {
+                            const itemsList = response.data
+                            setItems(itemsList)
+                        })
+                        .catch ((error) => {
+                            console.log('Error getting items', error);
+                        });
+                    } else if (`${temperature}` <= 14 && `${temperature}` > 9) {
+                        axios
+                        .get (`http://localhost:8080/fall-items`)
+                        .then (response => {
+                            const itemsList = response.data
+                            setItems(itemsList)
+                        })
+                        .catch ((error) => {
+                            console.log('Error getting items', error);
+                        });
+                    } else if (`${temperature}` <= 9){
                         axios
                         .get (`http://localhost:8080/winter-items`)
                         .then (response => {
@@ -47,7 +67,7 @@ function SearchBar({locationInput, setLocationInput}) {
                             setItems(itemsList)
                         })
                         .catch ((error) => {
-                            console.log('Error getting destination', error);
+                            console.log('Error getting items', error);
                         });
                     }
                 })
