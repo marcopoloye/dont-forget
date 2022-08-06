@@ -1,6 +1,7 @@
 import React from 'react';
 import { v4 as uuid } from 'uuid';
 import './ChecklistForm.scss'
+
 function ChecklistForm ({inputText, setInputText, items, setItems, weatherData}) {
 
     const handleChange = (e) => {
@@ -23,10 +24,6 @@ function ChecklistForm ({inputText, setInputText, items, setItems, weatherData})
             console.log('empty input')
         }
 
-        // if (inputValue !== items.itemName) {
-        //     setItems([...items, {itemName: inputText, packed: false, id: uuid()}]);
-        //     setInputText('');
-        // }
     }
 
     return (

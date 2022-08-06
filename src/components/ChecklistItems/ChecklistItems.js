@@ -1,4 +1,3 @@
-import axios from 'axios';
 import './ChecklistItems.scss'
 
 function ChecklistItems({itemName, setItems, items, item}) {
