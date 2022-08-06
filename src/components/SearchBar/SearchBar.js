@@ -8,6 +8,7 @@ function SearchBar({locationInput, setLocationInput}) {
     const [inputText, setInputText] = useState('');
     const [items, setItems] = useState([]);
     const [weatherData, setWeatherData] = useState('');
+    const [saveButton, setSaveButton] = useState('');
 
     const API_KEY = process.env.REACT_APP_WEATHER_API_KEY;
 
@@ -105,6 +106,8 @@ function SearchBar({locationInput, setLocationInput}) {
                 items={items} 
                 setItems={setItems}
             />
+
+            <button className={`${weatherData ? 'search__button' : 'search__button--hidden'}`}>Save to my List</button>
         </>
 
     );
