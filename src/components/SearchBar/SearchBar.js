@@ -13,11 +13,11 @@ function SearchBar({locationInput, setLocationInput}) {
 
     const API_KEY = process.env.REACT_APP_WEATHER_API_KEY;
 
-    const handleInput = (e) => {
+    const handleSearchInput = (e) => {
         setLocationInput(e.target.value);
     }
 
-    const handleSubmit = (e) => {
+    const handleSearchSubmit = (e) => {
         e.preventDefault();
 
         const searchValue = e.target[0].value;
@@ -35,45 +35,45 @@ function SearchBar({locationInput, setLocationInput}) {
                         axios
                         .get (`http://localhost:8080/summer-items`)
                         .then (response => {
-                            const itemsList = response.data
-                            setItems(itemsList)
+                            const itemsList = response.data;
+                            setItems(itemsList);
                         })
-                        .catch ((error) => {
+                        .catch (error => {
                             console.log('Error getting items', error);
                         });
                     } else if (`${temperature}` < 20 && `${temperature}` > 14) {
                         axios
                         .get (`http://localhost:8080/spring-items`)
                         .then (response => {
-                            const itemsList = response.data
-                            setItems(itemsList)
+                            const itemsList = response.data;
+                            setItems(itemsList);
                         })
-                        .catch ((error) => {
+                        .catch (error => {
                             console.log('Error getting items', error);
                         });
                     } else if (`${temperature}` <= 14 && `${temperature}` > 9) {
                         axios
                         .get (`http://localhost:8080/fall-items`)
                         .then (response => {
-                            const itemsList = response.data
-                            setItems(itemsList)
+                            const itemsList = response.data;
+                            setItems(itemsList);
                         })
-                        .catch ((error) => {
+                        .catch (error => {
                             console.log('Error getting items', error);
                         });
                     } else if (`${temperature}` <= 9){
                         axios
                         .get (`http://localhost:8080/winter-items`)
                         .then (response => {
-                            const itemsList = response.data
-                            setItems(itemsList)
+                            const itemsList = response.data;
+                            setItems(itemsList);
                         })
-                        .catch ((error) => {
+                        .catch (error => {
                             console.log('Error getting items', error);
                         });
                     }
                 })
-                .catch ((error) => {
+                .catch (error => {
                     console.log('Error getting destination', error);
                 });
 
@@ -89,8 +89,8 @@ function SearchBar({locationInput, setLocationInput}) {
             <div className="search__container">
                 <h3>{weatherData}</h3>
                     
-                <form onSubmit={handleSubmit}>
-                    <input className="search__input input" type="text" placeholder='Enter a location' value={locationInput} onChange={handleInput}/>
+                <form onSubmit={handleSearchSubmit}>
+                    <input className="search__input input" type="search" placeholder='Enter a location' value={locationInput} onChange={handleSearchInput}/>
                     <button className="search__button button" type="submit">Search</button>
                 </form>
             </div>
