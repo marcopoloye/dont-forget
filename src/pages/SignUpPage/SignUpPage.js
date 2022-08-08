@@ -1,7 +1,7 @@
 import axios from "axios";
-import React, { useState} from 'react';
+import { useState } from "react";
 
-function SignupForm () {
+function SignUpPage () {
     const [firstNameInput, setFirstNameInput] = useState('');
     const [lastNameInput, setLastNameInput] = useState('');
     const [emailInput, setEmailInput] = useState('');
@@ -23,7 +23,7 @@ function SignupForm () {
         setPasswordInput(e.target.value);
     };
 
-    
+
     const handleSubmit = (e) => {
         e.preventDefault();
 
@@ -36,7 +36,7 @@ function SignupForm () {
                     password: e.target[3].value
                 })
                 .catch (error => {
-                    console.log('Error getting signing up', error);
+                    console.log('Error signing up', error);
                 });
         } else {
             console.log('empty form inputs');
@@ -85,4 +85,4 @@ function SignupForm () {
     );
 }
 
-export default SignupForm ;
+export default SignUpPage;

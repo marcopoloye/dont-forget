@@ -5,6 +5,9 @@ import HomePage from './pages/HomePage/HomePage';
 import AboutPage from './pages/AboutPage/AboutPage';
 import ContactPage from './pages/ContactPage/ContactPage';
 import ListPage from './pages/ListPage/ListPage';
+import ProfilePage from './pages/ProfilePage/ProfilePage';
+import LoginPage from './pages/LoginPage/LoginPage';
+import SignUpPage from './pages/SignUpPage/SignUpPage';
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
 import MobileSideBar from './components/MobileSideBar/MobileSideBar';
@@ -23,6 +26,9 @@ function App() {
         <Route path='/about' component={AboutPage}/>
         <Route path='/contact' component={ContactPage}/>
         <Route path='/my-lists' component={ListPage}/>
+        <Route path='/profile' component={ProfilePage}/>
+        <Route path='/login' component={LoginPage}/>
+        <Route path='/signup' component={SignUpPage}/>
       </Switch>
       <Footer />
     </Router>

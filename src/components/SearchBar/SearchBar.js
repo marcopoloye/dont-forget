@@ -9,6 +9,7 @@ function SearchBar({locationInput, setLocationInput}) {
     const [inputText, setInputText] = useState('');
     const [items, setItems] = useState([]);
     const [weatherData, setWeatherData] = useState('');
+    const [newItems, setNewItems] = useState([]);
 
 
     const API_KEY = process.env.REACT_APP_WEATHER_API_KEY;
@@ -78,9 +79,10 @@ function SearchBar({locationInput, setLocationInput}) {
                 });
 
             setLocationInput('');
-
-
         }
+    }
+    const handleClick = () => {
+        setNewItems(items)
     }
 
 
@@ -108,7 +110,7 @@ function SearchBar({locationInput, setLocationInput}) {
                 setItems={setItems}
             />
 
-            <button className={`${weatherData ? 'search__button-save button' : 'button--hidden'}`}>Save to My List</button>
+            <button className={`${weatherData ? 'search__button-save button' : 'button--hidden'}`} onClick={handleClick}>Save to My List</button>
         </>
 
     );
