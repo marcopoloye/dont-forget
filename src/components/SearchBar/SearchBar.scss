@@ -3,6 +3,20 @@
 .search {
     &__container {
         display: flex;
+        flex-direction: column-reverse;
         justify-content: center;
+    }
+    &__form {
+        display: flex;
+        justify-content: center;
+    }
+    &__input {
+        margin-right: 1rem;
+    }
+    &__weather {
+        text-align: center;
+    }
+    ::placeholder {
+        color:red;
     }
 }

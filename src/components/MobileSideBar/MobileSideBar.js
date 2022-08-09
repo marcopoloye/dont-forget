@@ -21,6 +21,16 @@ function MobileSideBar() {
                     Profile
                 </p>
             </Link>
+            <Link to='/about'>
+                <p className="menu-item">
+                    About
+                </p>
+            </Link>
+            <Link to='/contact'>
+                <p className="menu-item">
+                    Contact
+                </p>
+            </Link>
         </Menu>
     );
 }
