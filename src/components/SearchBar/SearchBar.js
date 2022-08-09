@@ -4,12 +4,13 @@ import axios from 'axios';
 import React, { useState} from 'react';
 import ChecklistForm from '../ChecklistForm/ChecklistForm';
 import ChecklistList from '../ChecklistList/ChecklistList';
+import SavedItemsList from '../SavedItemsList/SavedItemsList';
 
 function SearchBar({locationInput, setLocationInput}) {
     const [inputText, setInputText] = useState('');
     const [items, setItems] = useState([]);
     const [weatherData, setWeatherData] = useState('');
-    const [newItems, setNewItems] = useState([]);
+    const [savedItems, setSavedItems] = useState([]);
 
 
     const API_KEY = process.env.REACT_APP_WEATHER_API_KEY;
@@ -30,8 +31,10 @@ function SearchBar({locationInput, setLocationInput}) {
                     const temperature = Math.round((response.data.main.temp) - 273.15);
                     const city = response.data.name;
                     const country = response.data.sys.country;
-                    setWeatherData(`It is currently ${temperature} °C in ${city}, ${country}`);
-                    
+                    const destination = (`${city}, ${country}`)
+                    setWeatherData(`It is currently ${temperature} °C in ${destination}`);
+                    sessionStorage.setItem('destination', destination)
+
                     if (`${temperature}` >= 20) {
                         axios
                         .get (`http://localhost:8080/summer-items`)
@@ -82,9 +85,32 @@ function SearchBar({locationInput, setLocationInput}) {
         }
     }
     const handleClick = () => {
-        setNewItems(items)
-    }
+        const destination= sessionStorage.getItem('destination')
+        const newnew = items.map(item => ({...item, destination: destination}));
 
+        sessionStorage.setItem('newList', JSON.stringify(newnew));
+
+        const authToken = sessionStorage.getItem('authToken');
+
+        axios
+            .get('http://localhost:8080/current', {
+                headers: {
+                Authorization: `Bearer ${authToken}`
+                }
+            })
+            .then((res) => {
+                const email= res.data.email;
+                
+                axios
+                    .post(`http://localhost:8080/savelist`, {
+                        email: email,
+                        lists: newnew
+                    })
+                    .then(res => {
+                        console.log(res)
+                    })
+            })
+    }
 
     return (
         <>
