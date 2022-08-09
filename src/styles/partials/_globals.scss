@@ -1,8 +1,17 @@
 @use '../../styles/partials/breakpoints' as *;
+@use '../../styles/partials/fonts' as *;
+
+body {
+    font-family: SourceSans;
+}
 
 .button {
-    border-radius: 10px;
-    border: 1px solid black;
+    border-radius: 30px;
+    border: none;
+    font-family: SourceSans;
+    font-size: 1rem;
+    background: #AEECFF;
+    color: #323232;
     cursor: pointer;
 
     &--hidden {
@@ -11,8 +20,13 @@
 }
 
 .input {
-    border-radius: 10px;
-    border: 1px solid black;
+    border: 1px solid #575757;
+    border-radius: 30px;
+    
+    &::placeholder {
+        font-family: SourceSans;
+        font-size: 1rem;
+    }
 }
 
 

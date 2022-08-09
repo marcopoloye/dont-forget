@@ -1,6 +1,7 @@
 import { Component } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import './ProfilePage.scss'
 
 class ProfilePage extends Component {
     state = {
@@ -39,8 +40,8 @@ class ProfilePage extends Component {
     
     handleLogout = () => {
         this.setState({
-        user: null,
-        failedAuth: true
+            user: null,
+            failedAuth: true
         });
         sessionStorage.removeItem('authToken');
     }
@@ -68,18 +69,21 @@ class ProfilePage extends Component {
         const { first_name, last_name, email, created_at} = this.state.user;
     
         return (
-        <main>
-            <h1>Dashboard</h1>
-            <p>
-            Welcome back, {first_name} {last_name}
+        <div className='profilepage'>
+            <h2 className='profilepage__heading'>My Profile</h2>
+            <p className='profilepage__text'>
+                <b>Name: </b>{first_name}, {last_name}
             </p>
-            <h2>My Profile</h2>
-            <p>Email: {email}</p>
-            <p>User since: {created_at}</p>
-            <button onClick={this.handleLogout}>
+            <p className='profilepage__text'>
+                <b>Email: </b> {email}
+            </p>
+            <p className='profilepage__text'>
+                <b>User since: </b> {created_at}
+            </p>
+            <button className='profilepage__button button' onClick={this.handleLogout}>
             Log out
             </button>
-        </main>
+        </div>
         );
     }
 }

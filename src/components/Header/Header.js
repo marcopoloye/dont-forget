@@ -20,7 +20,6 @@ function Header() {
                         Profile
                     </li>
                 </Link>
-
             </ul>
         </header>
     );

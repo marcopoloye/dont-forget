@@ -1,0 +1,46 @@
+.listpage {
+    margin: 5rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+
+    &__items, &__items--strike {
+        margin-top: 1rem;
+        padding: .5rem 0 .5rem .5rem;
+        display: flex;
+        justify-content: space-between;
+        border: 1px solid lightblue;
+        border-radius: 5px;
+        align-items: center;
+        
+        &-button {
+            border: none;
+
+            &-container {
+                display: flex;
+                padding-right: .5rem;
+            }
+            &--red, &--green {
+                border-radius: 0px;
+                border: none;
+                padding: 1rem;
+                border-radius: 3px;
+                cursor: pointer;
+            }
+            &--green {
+                background: url('../../assets/icons/check.svg') no-repeat;
+                margin-right: .5rem;
+            }
+            &--red {
+                background: url('../../assets/icons/cross.svg') no-repeat;
+            }
+        }
+        &--strike {
+            text-decoration: line-through;
+            color: #B92626;
+        }
+    }
+    &__list {
+        list-style: none;
+        padding: 0;
+    }
+}

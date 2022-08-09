@@ -1,3 +1,4 @@
+import './SignUpPage.scss';
 import axios from "axios";
 import { useState } from "react";
 
@@ -48,40 +49,44 @@ function SignUpPage () {
     };
 
     return (
-        <>
-            <label htmlFor='signup-form'>Sign up for an account</label>
-            <form id='signup-form' onSubmit={handleSubmit}>
-                <label htmlFor='signup-firstname'>First Name</label>
+        <div className="signup">
+            <h2 className="signup__heading" htmlFor='signup-form'>Sign up for an account</h2>
+            <form className="signup__form" id='signup-form' onSubmit={handleSubmit}>
+                <label className="signup__label" htmlFor='signup-firstname'>First Name</label>
                 <input 
                     type='text' 
                     id='signup-firstname' 
                     value={firstNameInput} 
                     onChange={handleFirstNameInput}
+                    className='signup__input input'
                 />
-                <label htmlFor='signup-lastname'>Last Name</label>
+                <label className="signup__label" htmlFor='signup-lastname'>Last Name</label>
                 <input 
                     type='text' 
                     id='signup-lastname' 
                     value={lastNameInput} 
                     onChange={handleLastNameInput}
+                    className='signup__input input'
                 />
-                <label htmlFor='signup-email'>Email</label>
+                <label className="signup__label" htmlFor='signup-email'>Email</label>
                 <input 
                     type='text' 
                     id='signup-email' 
                     value={emailInput} 
                     onChange={handleEmailInput}
+                    className='signup__input input'
                 />
-                <label htmlFor='signup-password'>Password</label>
+                <label className="signup__label" htmlFor='signup-password'>Password</label>
                 <input 
                     type='password' 
                     id='signup-password' 
                     value={passwordInput} 
                     onChange={handlePasswordInput}
+                    className='signup__input input'
                 />
-                <button>Sign up</button>
+                <button className="signup__button button">Sign up</button>
             </form>
-        </>
+        </div>
     );
 }
 

@@ -29,9 +29,10 @@ function ChecklistForm ({inputText, setInputText, items, setItems, weatherData})
 
     return (
         <>
-            <form onSubmit={handleSubmit} className={`${weatherData ? '' : 'main-form'}`}>
-                <input className='input'value={inputText} type='text' onChange={handleChange} placeholder='Add an item'/>
-                <button className='button' type='submit'>Add</button>
+            <form onSubmit={handleSubmit} className={`${weatherData ? 'checklist__form' : 'checklist__form--hidden'}`}>
+                <h3 className='checklist__form-text'>Here is a recommended packing list:</h3>
+                <input className='checklist__form-input input' value={inputText} type='text' onChange={handleChange} placeholder='Add an item'/>
+                <button className='checklist__form-button button' type='submit'>Add</button>
             </form>
         </>
     );

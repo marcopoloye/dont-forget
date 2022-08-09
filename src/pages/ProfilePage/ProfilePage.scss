@@ -1,14 +1,14 @@
-.aboutpage {
+.profilepage {
     margin: 5rem 1.5rem;
     display: flex;
     flex-direction: column;
 
+    &__button {
+        margin-top: 1rem;
+        padding: .5rem 1rem;
+    }
     &__text {
         margin: 0;
         padding-bottom: 1rem;
-    }
-    &__link {
-        text-decoration: none;
-        color: #40CAE7;
     }
 }

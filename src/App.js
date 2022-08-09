@@ -1,7 +1,6 @@
 import './App.css';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import HomePage from './pages/HomePage/HomePage';
-// import ListPage from './pages/ListPage/ListPage';
 import AboutPage from './pages/AboutPage/AboutPage';
 import ContactPage from './pages/ContactPage/ContactPage';
 import ListPage from './pages/ListPage/ListPage';
@@ -11,6 +10,7 @@ import SignUpPage from './pages/SignUpPage/SignUpPage';
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
 import MobileSideBar from './components/MobileSideBar/MobileSideBar';
+import MobileHeader from './components/MobileHeader/MobileHeader';
 import { useMediaQuery } from 'react-responsive';
 
 function App() {
@@ -20,6 +20,7 @@ function App() {
   return (
     <Router>
       {mobile && <MobileSideBar/>}
+      {mobile && <MobileHeader/>}
       {tablet && <Header />}
       <Switch>
         <Route path='/' exact component={HomePage}/>
@@ -30,6 +31,7 @@ function App() {
         <Route path='/login' component={LoginPage}/>
         <Route path='/signup' component={SignUpPage}/>
       </Switch>
+      {tablet && <Footer/>}
     </Router>
   );
 }

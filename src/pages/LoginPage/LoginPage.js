@@ -1,3 +1,4 @@
+import './LoginPage.scss';
 import React, { useState} from 'react';
 import axios from 'axios';
 import { Link, Redirect } from 'react-router-dom';
@@ -40,20 +41,36 @@ function LoginPage() {
     };
 
     return (
-      <>
-        <label htmlFor='login-form'>Login if you have an account</label>
+      <div className='login'>
+        <h2 htmlFor='login-form' className='login__heading'>Login</h2>
         <form className="login__form" id='login-form' onSubmit={handleSubmit}>
-            <label htmlFor='login-email'>Email</label>
-            <input type='text' id='login-email' value={emailInput} onChange={handleEmailInput}/>
-            <label htmlFor='login-password'>Password</label>
-            <input type='password' id='login-password' value={passwordInput} onChange={handlePasswordInput}/>
-            <button>Login</button>
+            <label htmlFor='login-email' className='login__label'>
+                Email:
+            </label>
+            <input 
+                className='login__input input' 
+                type='text' 
+                id='login-email' 
+                value={emailInput} 
+                onChange={handleEmailInput}
+            />
+            <label htmlFor='login-password' className='login__label'>
+                Password:
+            </label>
+            <input 
+                className='login__input input' 
+                type='password' 
+                id='login-password' 
+                value={passwordInput} 
+                onChange={handlePasswordInput}
+            />
+            <button className='login__button button'>Login</button>
             {success ? <Redirect to='/'/> : ''}
         </form>
-        <Link to='/signup'>
+        <Link to='/signup' className='login__link'>
             Don't have an account? Click here to sign up
         </Link>
-      </>  
+      </div>  
     );
 }
 

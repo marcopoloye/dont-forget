@@ -117,7 +117,7 @@ function SearchBar({locationInput, setLocationInput}) {
             <div className="search__container">
                 <h3 className='search__weather'>{weatherData}</h3>
                 <form className='search__form' onSubmit={handleSearchSubmit}>
-                    <input className="search__input input" type="search" placeholder='Enter your destination' value={locationInput} onChange={handleSearchInput}/>
+                    <input className="search__input input" type="text" placeholder='Enter your destination' value={locationInput} onChange={handleSearchInput}/>
                     <button className="search__button button" type="submit">Search</button>
                 </form>
             </div>

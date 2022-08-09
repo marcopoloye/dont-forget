@@ -1,0 +1,14 @@
+.mobileheader {
+    display: flex;
+    justify-content: center;
+    
+    &__logo {
+        max-width: 120px;
+        cursor: pointer;
+    }
+    &__link {
+        text-decoration: none;
+        max-width: 120px;
+        
+    }
+}

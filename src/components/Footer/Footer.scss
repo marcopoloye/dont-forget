@@ -1,8 +1,13 @@
 @use '../../styles/partials/breakpoints' as *;
+@use '../../styles/partials/globals' as *;
+@use '../../styles/partials/fonts' as *;
 
 .footer {
-    position: relative;
+    position: absolute;
     bottom: 0;
+    font-family: SourceSans;
+    width: 100%;
+
     &__list {
         display: flex;
         justify-content: center;
@@ -16,10 +21,14 @@
         width: 50%;
         display: flex;
         justify-content: center;
+        color: black;
     }
 
     @include tablet {
-        
+        width: 100%;
+        &__list {
+            justify-content: flex-end;
+        }
         &__link {
             width: auto;
             padding: 0 2rem;

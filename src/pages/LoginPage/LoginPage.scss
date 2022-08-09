@@ -1,0 +1,25 @@
+.login {
+    margin: 5rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+    &__form {
+        display: flex;
+        flex-direction: column;
+        width: 75%;
+    }
+    &__button {
+        margin: 1rem auto;
+        width: 50%;
+        padding: .5rem 1rem;
+    }
+    &__input {
+        margin: 1rem 0;
+        padding: .5rem 0 .5rem;
+    }
+    &__link {
+        text-decoration: none;
+        margin: 2rem auto;
+    }
+}
