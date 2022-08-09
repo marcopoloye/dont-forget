@@ -27,11 +27,18 @@
         border-radius: 30px;
         padding: .5rem 0 .5rem .5rem;
         margin-right: 1rem;
-
+        width: 80%;
     }
     &__weather {
         text-align: center;
         font-size: 1.1rem;
     }
-
+    @include tablet {
+        &__form {
+            width: 100%;
+        }
+        &__input {
+            width: 50%;
+        }
+    }
 }

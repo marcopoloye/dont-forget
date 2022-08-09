@@ -1,9 +1,12 @@
-.checklist__form {
-    margin: 0 auto;
+@use '../../styles/partials/breakpoints' as *;
 
+.checklist__form {
+    display: flex;
+    flex-direction: column;
     &-input {
         margin-right: 1rem;
         padding: .5rem 0 .5rem .5rem;
+        width: 50%;
     }
     &-button {
         padding: .5rem 1.5rem;
@@ -12,7 +15,19 @@
         font-size: 1.1rem;
         text-align: center;
     }
+    &-container {
+        display: flex;
+        justify-content: center;
+    }
     &--hidden {
         display: none;
+    }
+    @include tablet {
+        &-container {
+            width: 100%;
+        }
+        &-input {
+            width: 25%;
+        }
     }
 }
