@@ -26,7 +26,7 @@ function LoginPage() {
                     password: e.target[1].value
                 })
                 .then(res => {
-                    sessionStorage.setItem('authToken', res.data.token)
+                    sessionStorage.setItem('authToken', res.data.token);
                     setError('');
                     setSuccess(true);
                 })

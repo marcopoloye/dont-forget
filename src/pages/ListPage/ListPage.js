@@ -2,6 +2,7 @@ import './ListPage.scss';
 import { Component } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import SavedItemsList from '../../components/SavedItemsList/SavedItemsList';
 
 class ListPage extends Component {
     state = {
@@ -25,7 +26,6 @@ class ListPage extends Component {
           }
         })
         .then((res) => {
-          console.log('User Auth Success:', res.data);
           this.setState({
             user: res.data,
             failedAuth: false
@@ -66,6 +66,20 @@ class ListPage extends Component {
         )
       }
 
+      if (this.state.user.lists) {
+        const parsedList = JSON.parse(this.state.user.lists)
+        return (
+          <>
+            <p>{parsedList[0].destination}</p>
+            <ul>
+              {parsedList.map(items => (
+              <li key={items.id}>{items.itemName}</li>
+              ))}
+            </ul>
+          </>
+        )
+      }
+      
       return (
         <main>
           <h1>List Page</h1>

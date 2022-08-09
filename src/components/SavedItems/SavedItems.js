@@ -1,15 +1,11 @@
-import './ChecklistItems.scss';
-import '../../styles/partials/_globals.scss';
-
-function ChecklistItems({setItems, items, item}) {
-
+function SavedItems({setSavedItems, savedItems, savedItem}) {
     const deleteHandler = () => {
-        setItems(items.filter((selectedItem) => selectedItem.id !== item.id));
+        setSavedItems(savedItems.filter((el) => el.id !== savedItem.id));
     }
 
     const completeHandler = () => {
-        setItems(items.map(selectedItem => {
-            if (selectedItem.id === item.id) {
+        setSavedItems(savedItems.map(selectedItem => {
+            if (selectedItem.id === savedItem.id) {
                 return {
                     ...selectedItem, packed: !selectedItem.packed
                 }
@@ -19,8 +15,8 @@ function ChecklistItems({setItems, items, item}) {
 
     return (
         <div>
-            <li className={`${item.packed ? 'completed' : ''}`}>
-                {item.itemName}
+            <li className={`${savedItem.packed ? 'completed' : ''}`}>
+                {savedItem.itemName}
             </li>
             <button className='button' onClick={deleteHandler}>delete</button>
             <button className='button' onClick={completeHandler}>done</button>
@@ -28,4 +24,4 @@ function ChecklistItems({setItems, items, item}) {
     );
 }
 
-export default ChecklistItems;
+export default SavedItems;

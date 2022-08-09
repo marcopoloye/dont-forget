@@ -7,7 +7,7 @@ function ChecklistList({items, setItems}) {
         <div>
             <ul>
                 {items.map(item => (
-                    <ChecklistItems itemName={item.itemName} key={item.id} setItems={setItems} items={items} item={item}/>
+                    <ChecklistItems key={item.id} setItems={setItems} items={items} item={item}/>
                 ))}
             </ul>
         </div>

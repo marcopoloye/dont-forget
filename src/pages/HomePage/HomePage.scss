@@ -1,0 +1,16 @@
+.homepage {
+    display: flex;
+    flex-direction: column;
+
+    &__logo {
+        height: auto;
+        width: 70%;
+
+        &-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 5rem;
+        }
+    }
+
+}
