@@ -53,6 +53,7 @@ function LoginPage() {
                 id='login-email' 
                 value={emailInput} 
                 onChange={handleEmailInput}
+                placeholder='Enter your email'
             />
             <label htmlFor='login-password' className='login__label'>
                 Password:
@@ -63,6 +64,7 @@ function LoginPage() {
                 id='login-password' 
                 value={passwordInput} 
                 onChange={handlePasswordInput}
+                placeholder='Enter your password'
             />
             <button className='login__button button'>Login</button>
             {success ? <Redirect to='/'/> : ''}

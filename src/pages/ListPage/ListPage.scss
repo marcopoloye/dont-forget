@@ -1,3 +1,5 @@
+@use '../../styles/partials/breakpoints' as *;
+
 .listpage {
     margin: 5rem 1.5rem;
     display: flex;
@@ -34,6 +36,10 @@
                 background: url('../../assets/icons/cross.svg') no-repeat;
             }
         }
+        &:hover {
+            background: rgb(230, 230, 230);
+            border: 1px solid rgb(92, 168, 194);
+        }
         &--strike {
             text-decoration: line-through;
             color: #B92626;
@@ -42,6 +48,10 @@
     &__list {
         list-style: none;
         padding: 0;
+        margin-top: 0;
+        width: 75%;
+        max-width: 350px;
+        margin: 0 auto;
     }
     &__failed-message {
         margin-top: 5rem;
@@ -50,5 +60,17 @@
     &__failed-link {
         text-decoration: none;
         color: rgb(25, 153, 175);
+    }
+    &__destination {
+        margin-bottom: 0;
+        display: flex;
+        justify-content: center;
+        font-weight: 600;
+    }
+    @include tablet {
+        margin: 5rem 5rem;
+    }
+    @include desktop {
+        margin: 5rem 7rem;
     }
 }

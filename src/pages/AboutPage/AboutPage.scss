@@ -1,3 +1,5 @@
+@use '../../styles/partials/breakpoints' as *;
+
 .aboutpage {
     margin: 5rem 1.5rem;
     display: flex;
@@ -10,5 +12,11 @@
     &__link {
         text-decoration: none;
         color: #40CAE7;
+    }
+    @include tablet {
+        margin: 5rem 5rem;
+    }
+    @include desktop {
+        margin: 5rem 7rem;
     }
 }

@@ -13,7 +13,9 @@ body {
     background: #AEECFF;
     color: #323232;
     cursor: pointer;
-
+    &:hover {
+        background: #6ecfec;
+    }
     &--hidden {
         display: none;
     }

@@ -4,14 +4,14 @@ import axios from 'axios';
 import React, { useState} from 'react';
 import ChecklistForm from '../ChecklistForm/ChecklistForm';
 import ChecklistList from '../ChecklistList/ChecklistList';
-import SavedItemsList from '../SavedItemsList/SavedItemsList';
+import { Link } from 'react-router-dom';
 
 function SearchBar({locationInput, setLocationInput}) {
     const [inputText, setInputText] = useState('');
     const [items, setItems] = useState([]);
     const [weatherData, setWeatherData] = useState('');
     const [savedItems, setSavedItems] = useState([]);
-
+    const [destination, setDestination] = useState('');
 
     const API_KEY = process.env.REACT_APP_WEATHER_API_KEY;
 
@@ -31,9 +31,11 @@ function SearchBar({locationInput, setLocationInput}) {
                     const temperature = Math.round((response.data.main.temp) - 273.15);
                     const city = response.data.name;
                     const country = response.data.sys.country;
-                    const destination = (`${city}, ${country}`)
+                    const destination = (`${city}, ${country}`);
+                    const destinationId = response.data.id;
+                    setDestination(destinationId);
                     setWeatherData(`It is currently ${temperature} °C in ${destination}`);
-                    sessionStorage.setItem('destination', destination)
+                    sessionStorage.setItem('destination', destination);
 
                     if (`${temperature}` >= 20) {
                         axios

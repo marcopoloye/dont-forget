@@ -1,3 +1,5 @@
+@use '../../styles/partials/breakpoints' as *;
+
 .contactpage {
     margin: 5rem 1.5rem;
     display: flex;
@@ -6,7 +8,7 @@
     &__card {
         &-container {
             display: flex;
-            justify-content: space-around;
+            justify-content: space-between;
             max-width: 500px;
         }
         &-mail, &-linkedin, &-github {
@@ -27,7 +29,11 @@
             background: url('../../assets/icons/github.png') no-repeat 50% 50%;
             background-size: 100%;
         }
-
-
+    }
+    @include tablet {
+        margin: 5rem 5rem;
+    }
+    @include desktop {
+        margin: 5rem 7rem;
     }
 }

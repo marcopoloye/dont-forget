@@ -2,6 +2,7 @@ import './ListPage.scss';
 import { Component } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 
 class ListPage extends Component {
   state = {
@@ -70,6 +71,7 @@ class ListPage extends Component {
   render() {
     if (this.state.failedAuth) {
       return (
+        // <Redirect to='/login'/>
         <main>
           <p className='listpage__failed-message'>
               You must be logged in to see this page.{' '}
@@ -77,7 +79,9 @@ class ListPage extends Component {
           </p>
         </main>
       );
-    }
+    }  
+
+    
 
     if (!this.state.user) {
       return (
@@ -89,31 +93,31 @@ class ListPage extends Component {
 
     if (!this.state.items) {
       return (
-        <main>
+        <main className='listpage'>
           <h2 className='listpage__heading'>My Lists</h2>
-          <p>packing list is empty</p>
+          <p className='listpage__text'>No lists found</p>
         </main>
       )
     }
-      return (
-        <div className='listpage'>
-          <h2 className='listpage__heading'>My Lists</h2>
-          <p className='listpage__destination'>
-            Packing list for {this.state.items[0].destination}
-          </p>
-          <ul className='listpage__list'>
-            {this.state.items.map(items => (
-              <li key={items.id} className={`${items.packed ? 'listpage__items--strike' : 'listpage__items'}`}>
-                {items.itemName}
-                <div className='listpage__items-button-container' >
-                  <div className='listpage__items-button--green' id={items.id} onClick={this.completeHandler}/>
-                  <div className='listpage__items-button--red' id={items.id}onClick={this.deleteHandler}/>
-                </div>
-              </li>
-            ))}
-          </ul>
-        </div>
-      )
+    return (
+      <div className='listpage'>
+        <h2 className='listpage__heading'>My Lists</h2>
+        <p className='listpage__destination'>
+          Packing list for {this.state.items[0].destination}:
+        </p>
+        <ul className='listpage__list'>
+          {this.state.items.map(items => (
+            <li key={items.id} className={`${items.packed ? 'listpage__items--strike' : 'listpage__items'}`}>
+              {items.itemName}
+              <div className='listpage__items-button-container' >
+                <div className='listpage__items-button--green' id={items.id} onClick={this.completeHandler}/>
+                <div className='listpage__items-button--red' id={items.id}onClick={this.deleteHandler}/>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
+    )
   }
 }
 

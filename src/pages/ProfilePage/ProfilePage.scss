@@ -1,3 +1,5 @@
+@use '../../styles/partials/breakpoints' as *;
+
 .profilepage {
     margin: 5rem 1.5rem;
     display: flex;
@@ -19,4 +21,14 @@
         text-decoration: none;
         color: rgb(25, 153, 175);
     }
+    @include tablet {
+        margin: 5rem 5rem;
+        &__button {
+            max-width: 20rem;
+        }
+    }
+    @include desktop {
+        margin: 5rem 7rem;
+    }
+    
 }
