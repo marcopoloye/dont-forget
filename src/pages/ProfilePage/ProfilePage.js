@@ -49,11 +49,11 @@ class ProfilePage extends Component {
     render() {
         if (this.state.failedAuth) {
             return (
-                <main className="dashboard">
-                <p>
-                    You must be logged in to see this page.{' '}
-                    <Link to="/login">Log in</Link>
-                </p>
+                <main>
+                    <p className='profilepage__failed-message'>
+                        You must be logged in to see this page.{' '}
+                        <Link to="/login" className='profilepage__failed-link'>Click here to log in.</Link>
+                    </p>
                 </main>
             );
         }
@@ -61,7 +61,7 @@ class ProfilePage extends Component {
         if (!this.state.user) {
             return (
                 <main className="dashboard">
-                <p>... Loading ...</p>
+                    <p>... Loading ...</p>
                 </main>
             )
         }

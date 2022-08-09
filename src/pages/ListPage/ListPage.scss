@@ -43,4 +43,12 @@
         list-style: none;
         padding: 0;
     }
+    &__failed-message {
+        margin-top: 5rem;
+        text-align: center;
+    }
+    &__failed-link {
+        text-decoration: none;
+        color: rgb(25, 153, 175);
+    }
 }

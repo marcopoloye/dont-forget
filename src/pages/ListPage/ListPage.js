@@ -70,10 +70,10 @@ class ListPage extends Component {
   render() {
     if (this.state.failedAuth) {
       return (
-        <main className="dashboard">
-          <p>
-            You must be logged in to see this page.{' '}
-            <Link to="/login">Log in</Link>
+        <main>
+          <p className='listpage__failed-message'>
+              You must be logged in to see this page.{' '}
+              <Link to="/login" className='listpage__failed-link'>Click here to log in.</Link>
           </p>
         </main>
       );
