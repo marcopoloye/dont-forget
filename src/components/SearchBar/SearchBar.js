@@ -10,7 +10,7 @@ function SearchBar({locationInput, setLocationInput}) {
     const [items, setItems] = useState([]);
     const [weatherData, setWeatherData] = useState('');
     const [saveSuccess, setSaveSuccess] = useState('');
-    const [weatherLink, setWeatherLink] = useState('')
+    const [weatherLink, setWeatherLink] = useState('');
 
     const API_KEY = process.env.REACT_APP_WEATHER_API_KEY;
 

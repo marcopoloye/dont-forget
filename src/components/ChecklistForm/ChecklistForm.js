@@ -19,12 +19,11 @@ function ChecklistForm ({inputText, setInputText, items, setItems, weatherData})
                 console.log('same value')
             } else {
                 setItems([...items, {itemName: inputText, packed: false, id: uuid()}]);
+                setInputText('');
             }
-
         } else {
-            console.log('empty input')
+            console.log('empty input');
         }
-        setInputText('')
     }
 
     return (

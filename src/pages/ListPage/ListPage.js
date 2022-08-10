@@ -3,6 +3,7 @@ import { Component } from 'react';
 import axios from 'axios';
 import { Redirect } from 'react-router-dom';
 import DeleteListModal from '../../components/DeleteListModal/DeleteListModal';
+import { v4 as uuid } from 'uuid';
 
 class ListPage extends Component {
   state = {
@@ -10,7 +11,9 @@ class ListPage extends Component {
     user: null,
     items: '',
     saveSuccess: '',
-    modal: false
+    modal: false,
+    currentInput: '',
+    currentList: []
   }
 
   componentDidMount() {
@@ -117,6 +120,32 @@ class ListPage extends Component {
     })
   }
 
+  handleInputChange = (e) => {
+    e.preventDefault()
+
+    this.setState({
+      currentInput: e.target.value
+    })
+  }
+
+  handleSubmit = (e) => {
+    e.preventDefault()
+    const mostCurrentList = this.state.items;
+    const inputValue = e.target[0].value;
+
+    if (inputValue) {
+      if (mostCurrentList.findIndex(item => item.itemName.toLowerCase() === inputValue.toLowerCase()) !== -1) {
+        console.log('same value')
+      } else {
+        this.setState({
+          items: [...mostCurrentList, {itemName: inputValue, packed: false, id: uuid()}],
+          currentInput: ''
+        })
+      }
+    } else {
+      console.log('empty input');
+    };
+  };
 
   render() {
     if (this.state.failedAuth) {
@@ -140,6 +169,14 @@ class ListPage extends Component {
         <p className='listpage__destination'>
           Packing list for {this.state.items[0].destination}:
         </p>
+        <div>
+          <form className='checklist__form' onSubmit={this.handleSubmit}>
+            <div className='checklist__form-container'>
+              <input className='checklist__form-input input' type='text' onChange={this.handleInputChange} value={this.state.currentInput} placeholder='Add an item'></input>
+              <button className='checklist__form-button button' type='submit'>Add</button>
+            </div>
+          </form>
+        </div>
         <ul className='listpage__list'>
           {this.state.items.map(items => (
             <li key={items.id} className={`${items.packed ? 'listpage__items--strike' : 'listpage__items'}`}>
