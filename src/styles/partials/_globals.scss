@@ -10,14 +10,14 @@ body {
     border: none;
     font-family: SourceSans;
     font-size: 1rem;
-    background: #a2e8fd;
+    background: #95e1f8;
     color: #323232;
     cursor: pointer;
     &:hover {
-        background: #b5eeff;
+        background: #bef0ff;
     }
     &:active {
-        background: #6ecfec;
+        background: #60c1df;
     }
     &--hidden {
         display: none;
