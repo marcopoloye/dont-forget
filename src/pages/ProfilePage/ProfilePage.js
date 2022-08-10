@@ -67,24 +67,26 @@ class ProfilePage extends Component {
         const { first_name, last_name, email, created_at} = this.state.user;
     
         return (
-        <div className='profilepage'>
-            <h2 className='profilepage__heading'>My Profile</h2>
-            <p className='profilepage__text'>
-                <b>First name: </b>{first_name}
-            </p>
-            <p className='profilepage__text'>
-                <b>Last name: </b>{last_name}
-            </p>
-            <p className='profilepage__text'>
-                <b>Email: </b> {email}
-            </p>
-            <p className='profilepage__text'>
-                <b>User since: </b> {created_at}
-            </p>
-            <button className='profilepage__button button' onClick={this.handleLogout}>
-            Log out
-            </button>
-        </div>
+            <div className='profilepage__container'>
+                <div className='profilepage'>
+                    <h2 className='profilepage__heading'>My Profile</h2>
+                    <p className='profilepage__text'>
+                        <b>First name: </b>{first_name}
+                    </p>
+                    <p className='profilepage__text'>
+                        <b>Last name: </b>{last_name}
+                    </p>
+                    <p className='profilepage__text'>
+                        <b>Email: </b> {email}
+                    </p>
+                    <p className='profilepage__text'>
+                        <b>User since: </b> {created_at}
+                    </p>
+                    <button className='profilepage__button button' onClick={this.handleLogout}>
+                    Log out
+                    </button>
+                </div>
+            </div>
         );
     }
 }

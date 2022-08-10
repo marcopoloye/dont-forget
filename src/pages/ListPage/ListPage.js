@@ -8,7 +8,9 @@ class ListPage extends Component {
   state = {
     failedAuth: false,
     user: null,
-    items: ''
+    items: '',
+    saveSuccess: '',
+    deleteSuccess: 'Nothing seems to be here...'
   }
 
   componentDidMount() {
@@ -40,7 +42,6 @@ class ListPage extends Component {
           failedAuth: true
         });
       });
-
   }
   
   deleteHandler = (e) => {
@@ -79,6 +80,9 @@ class ListPage extends Component {
       })
       .then(res => {
           console.log(res);
+          this.setState({
+            saveSuccess: `Successfully saved changes for ${this.state.items[0].destination}!`
+          })
       })
       .catch(err => {
         console.log(err);
@@ -136,10 +140,10 @@ class ListPage extends Component {
           ))}
         <div className='listpage__form-buttons-container'>
           <button className='listpage__form-buttons button' onClick={this.handleSave}>Save Changes</button>
-          <button className='listpage__form-buttons button' onClick={this.handleDelete}>Delete List</button>
+          <button className='listpage__form-buttons button' id='delete-button' onClick={this.handleDelete}>Delete List</button>
         </div>
-
         </ul>
+        <p className='listpage__success'>{this.state.saveSuccess}</p>
       </div>
     )
   }
