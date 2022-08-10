@@ -23,7 +23,7 @@ Don't Forget is a checklist style app designed to help forgetful travelers remem
 
 ## Installation
 Note: Back end server must be online for proper functionality
-1. 'npm i' into terminal to install necessary node modules
+1. Install necessary node modules
 2. 'npm start' into terminal to run the app
 
 ## Tech stack
