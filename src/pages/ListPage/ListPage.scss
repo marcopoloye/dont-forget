@@ -133,6 +133,13 @@
 }
 
 #delete-button {
-    background: #ff4848;
+    background: #d83c3c;
     color: white;
+
+    &:hover {
+        background: #ff5b5b;
+    }
+    &:active {
+        background: #a12d2d;
+    }
 }
