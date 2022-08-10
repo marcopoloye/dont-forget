@@ -4,15 +4,13 @@ import axios from 'axios';
 import React, { useState} from 'react';
 import ChecklistForm from '../ChecklistForm/ChecklistForm';
 import ChecklistList from '../ChecklistList/ChecklistList';
-import { Link } from 'react-router-dom';
 
 function SearchBar({locationInput, setLocationInput}) {
     const [inputText, setInputText] = useState('');
     const [items, setItems] = useState([]);
     const [weatherData, setWeatherData] = useState('');
-    const [savedItems, setSavedItems] = useState([]);
-    const [destination, setDestination] = useState('');
     const [saveSuccess, setSaveSuccess] = useState('');
+    const [weatherLink, setWeatherLink] = useState('')
 
     const API_KEY = process.env.REACT_APP_WEATHER_API_KEY;
 
@@ -35,8 +33,8 @@ function SearchBar({locationInput, setLocationInput}) {
                     const destination = (`${city}, ${country}`);
                     const destinationId = response.data.id;
 
-                    setDestination(destinationId);
-                    setWeatherData(`It is currently ${temperature} °C in ${destination}`);
+                    setWeatherLink(`https://openweathermap.org/city/${destinationId}`)
+                    setWeatherData(`It is currently ${temperature} °C in ${destination}. Click here for more details.`);
                     sessionStorage.setItem('currentDestination', destination);
 
                     if (`${temperature}` >= 20) {
@@ -92,8 +90,6 @@ function SearchBar({locationInput, setLocationInput}) {
         const authToken = sessionStorage.getItem('authToken');
         const destination = sessionStorage.getItem('currentDestination');
         const editedList = items.map(item => ({...item, destination: destination}));
-
-        sessionStorage.setItem('currentSavedList', JSON.stringify(editedList));
         
         if (authToken) {
             axios
@@ -130,7 +126,9 @@ function SearchBar({locationInput, setLocationInput}) {
     return (
         <>
             <div className="search__container">
-                <h3 className='search__weather'>{weatherData}</h3>
+                <a href={weatherLink} target='_blank' className='search__weather-link'>
+                    <h3 className='search__weather'>{weatherData}</h3>
+                </a>
                 <form className='search__form' onSubmit={handleSearchSubmit}>
                     <input className="search__input input" type="text" placeholder='Enter your destination' value={locationInput} onChange={handleSearchInput}/>
                     <button className="search__button button" type="submit">Search</button>

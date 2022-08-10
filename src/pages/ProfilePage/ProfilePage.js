@@ -45,7 +45,6 @@ class ProfilePage extends Component {
         });
         sessionStorage.removeItem('authToken');
         sessionStorage.removeItem('currentEmail');
-        sessionStorage.removeItem('currentSavedList');
         sessionStorage.removeItem('currentDestination');
     }
     

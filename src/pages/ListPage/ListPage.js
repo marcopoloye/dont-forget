@@ -1,8 +1,8 @@
 import './ListPage.scss';
 import { Component } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
 import { Redirect } from 'react-router-dom';
+import DeleteListModal from '../../components/DeleteListModal/DeleteListModal';
 
 class ListPage extends Component {
   state = {
@@ -10,7 +10,7 @@ class ListPage extends Component {
     user: null,
     items: '',
     saveSuccess: '',
-    deleteSuccess: 'Nothing seems to be here...'
+    modal: false
   }
 
   componentDidMount() {
@@ -44,7 +44,7 @@ class ListPage extends Component {
       });
   }
   
-  deleteHandler = (e) => {
+  deleteItemHandler = (e) => {
     const selectedItem = e.target.id;
     const filteredList = this.state.items.filter((item) => item.id !== selectedItem)
 
@@ -53,7 +53,7 @@ class ListPage extends Component {
     })
   }
 
-  packedHandler = (e) => {
+  checkItemHandler = (e) => {
     const selectedItem = e.target.id;
 
     const editedList = this.state.items.map((item) => {
@@ -69,7 +69,7 @@ class ListPage extends Component {
     })
   }
 
-  handleSave = () => {
+  handleSaveList = () => {
     const parsedEmail = JSON.parse(sessionStorage.getItem('currentEmail'));
     const mostCurrentList = this.state.items;
 
@@ -88,8 +88,7 @@ class ListPage extends Component {
         console.log(err);
       })
   }
-
-  handleDelete = () => {
+  handleDeleteList = () => {
     const parsedEmail = JSON.parse(sessionStorage.getItem('currentEmail'));
 
     axios
@@ -105,6 +104,19 @@ class ListPage extends Component {
         console.log(err);
       })
   }
+
+  openModal = () => {
+    this.setState({
+      modal: true
+    })
+  }
+
+  closeModal = () => {
+    this.setState({
+      modal: false
+    })
+  }
+
 
   render() {
     if (this.state.failedAuth) {
@@ -133,17 +145,18 @@ class ListPage extends Component {
             <li key={items.id} className={`${items.packed ? 'listpage__items--strike' : 'listpage__items'}`}>
               {items.itemName}
               <div className='listpage__items-button-container' >
-                <div className='listpage__items-button--green' id={items.id} onClick={this.packedHandler}/>
-                <div className='listpage__items-button--red' id={items.id} onClick={this.deleteHandler}/>
+                <div className='listpage__items-button--green' id={items.id} onClick={this.checkItemHandler}/>
+                <div className='listpage__items-button--red' id={items.id} onClick={this.deleteItemHandler}/>
               </div>
             </li>
           ))}
         <div className='listpage__form-buttons-container'>
-          <button className='listpage__form-buttons button' onClick={this.handleSave}>Save Changes</button>
-          <button className='listpage__form-buttons button' id='delete-button' onClick={this.handleDelete}>Delete List</button>
+          <button className='listpage__form-buttons button' onClick={this.handleSaveList}>Save Changes</button>
+          <button className='listpage__form-buttons button' id='delete-button' onClick={this.openModal}>Delete List</button>
         </div>
         </ul>
         <p className='listpage__success'>{this.state.saveSuccess}</p>
+        {this.state.modal && <DeleteListModal destination={this.state.items[0].destination} closeModal={this.closeModal} deleteList={this.handleDeleteList}/>}
       </div>
     )
   }
