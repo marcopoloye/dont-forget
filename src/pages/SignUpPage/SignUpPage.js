@@ -65,7 +65,7 @@ function SignUpPage () {
 
     return (
         <div className="signup">
-            <h2 className="signup__heading" htmlFor='signup-form'>Sign up for an account</h2>
+            <h1 className="signup__heading" htmlFor='signup-form'>Sign up for an account</h1>
             <form className="signup__form" id='signup-form' onSubmit={handleSubmit}>
                 <label className="signup__label" htmlFor='signup-firstname'>First Name</label>
                 <input 

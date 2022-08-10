@@ -78,7 +78,6 @@
         color: #2083d4;
     }
     &__destination {
-        margin-bottom: 0;
         display: flex;
         justify-content: center;
         font-weight: 600;
@@ -86,7 +85,7 @@
     &__text {
         text-align: center;
     }
-    &__form-buttons {
+    &__buttons {
         margin-top: 1rem;
         padding: .75rem .5rem;
         width: 48%;
@@ -101,8 +100,31 @@
         color: rgb(230, 20, 20);
         margin-top: 1rem;
     }
+    &__form {
+        &-container {
+            display: flex;
+            justify-content: center;
+        }
+        &-input {
+            margin-right: 1rem;
+            padding: .5rem 0 .5rem .75rem;
+            width: 50%;
+        }
+        &-button {
+            padding: .5rem 1.5rem;
+        }
+    }
     @include tablet {
         margin-top: 5rem;
+
+        &__form {
+            &-container {
+                width: 100%;
+            }
+            &-input {
+                width: 25%;
+            }
+        }
     }
     @include desktop {
         margin-top: 5rem;

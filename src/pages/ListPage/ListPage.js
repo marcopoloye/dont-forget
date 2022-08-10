@@ -165,15 +165,15 @@ class ListPage extends Component {
 
     return (
       <div className='listpage'>
-        <h2 className='listpage__heading'>My Lists</h2>
-        <p className='listpage__destination'>
+        <h1 className='listpage__heading'>My Lists</h1>
+        <h3 className='listpage__destination'>
           Packing list for {this.state.items[0].destination}:
-        </p>
+        </h3>
         <div>
-          <form className='checklist__form' onSubmit={this.handleSubmit}>
-            <div className='checklist__form-container'>
-              <input className='checklist__form-input input' type='text' onChange={this.handleInputChange} value={this.state.currentInput} placeholder='Add an item'></input>
-              <button className='checklist__form-button button' type='submit'>Add</button>
+          <form className='listpage__form' onSubmit={this.handleSubmit}>
+            <div className='listpage__form-container'>
+              <input className='listpage__form-input input' type='text' onChange={this.handleInputChange} value={this.state.currentInput} placeholder='Add an item'></input>
+              <button className='listpage__form-button button' type='submit'>Add</button>
             </div>
           </form>
         </div>
@@ -187,9 +187,9 @@ class ListPage extends Component {
               </div>
             </li>
           ))}
-        <div className='listpage__form-buttons-container'>
-          <button className='listpage__form-buttons button' onClick={this.handleSaveList}>Save Changes</button>
-          <button className='listpage__form-buttons button' id='delete-button' onClick={this.openModal}>Delete List</button>
+        <div className='listpage__buttons-container'>
+          <button className='listpage__buttons button' onClick={this.handleSaveList}>Save Changes</button>
+          <button className='listpage__buttons button' id='delete-button' onClick={this.openModal}>Delete List</button>
         </div>
         </ul>
         <p className='listpage__success'>{this.state.saveSuccess}</p>

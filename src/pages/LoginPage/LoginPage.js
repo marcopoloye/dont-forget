@@ -56,7 +56,7 @@ function LoginPage() {
 
     return (
       <div className='login'>
-        <h2 htmlFor='login-form' className='login__heading'>Login</h2>
+        <h1 htmlFor='login-form' className='login__heading'>Login</h1>
         <form className="login__form" id='login-form' onSubmit={handleLogin}>
             <label htmlFor='login-email' className='login__label'>
                 Email:

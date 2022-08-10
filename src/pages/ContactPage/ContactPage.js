@@ -3,7 +3,7 @@ import './ContactPage.scss'
 function ContactPage() {
     return (
         <div className='contactpage'>
-            <h2 className='contactpage__heading'>Contact</h2>
+            <h1 className='contactpage__heading'>Contact</h1>
             <div className='contactpage__card-container'>
                 <a target="_blank" href="mailto:marco.ye99@gmail.com">
                     <div className='contactpage__card-mail'/>

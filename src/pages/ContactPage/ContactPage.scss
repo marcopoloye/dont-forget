@@ -4,36 +4,42 @@
     margin: 5rem 1.5rem;
     display: flex;
     flex-direction: column;
-
+    &__heading {
+        text-align: center;
+        margin-bottom: 0;
+    }
     &__card {
         &-container {
             display: flex;
-            justify-content: space-between;
-            max-width: 500px;
+            justify-content: space-around;
+            max-width: 1000px;
+            margin: 0 auto;
+            
         }
         &-mail, &-linkedin, &-github {
-            background-color: green;
             width: 20vw;
             height: 23vh;
             max-width: 100px;
         }
         &-mail {
-            background: url('../../assets/icons/mail.png') no-repeat 50% 50%;
-            background-size: 100%;
+            background: url('../../assets/icons/mail.png') no-repeat 50% 55%;
+            background-size: 70%;
         }
         &-linkedin {
-            background: url('../../assets/icons/linkedin.png') no-repeat 50% 50%;
-            background-size: 100%;
+            background: url('../../assets/icons/linkedin.png') no-repeat 50% 52%;
+            background-size: 70%;
         }
         &-github {
             background: url('../../assets/icons/github.png') no-repeat 50% 50%;
-            background-size: 100%;
+            background-size: 70%;
         }
-    }
-    @include tablet {
-        margin: 5rem 5rem;
-    }
-    @include desktop {
-        margin: 5rem 7rem;
+ 
+        @include tablet {
+            margin: 5rem 3rem;
+        }
+        @include desktop {
+            margin: 5rem 5rem;
+        }
+
     }
 }

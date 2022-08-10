@@ -68,7 +68,7 @@ class ProfilePage extends Component {
         return (
             <div className='profilepage__container'>
                 <div className='profilepage'>
-                    <h2 className='profilepage__heading'>My Profile</h2>
+                    <h1 className='profilepage__heading'>My Profile</h1>
                     <p className='profilepage__text'>
                         <b>First name: </b>{first_name}
                     </p>
