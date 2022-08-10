@@ -6,7 +6,8 @@ import { Link, Redirect } from 'react-router-dom';
 function LoginPage() {
     const [emailInput, setEmailInput] = useState('');
     const [passwordInput, setPasswordInput] = useState('');
-    const [success, setSuccess] = useState(false)
+    const [success, setSuccess] = useState(false);
+    const [invalidLogin, setInvalidLogin] = useState('');
 
     const handleEmailInput = (e) => {
         setEmailInput(e.target.value);
@@ -40,7 +41,6 @@ function LoginPage() {
                     sessionStorage.setItem('authToken', res.data.token);
                     const token = sessionStorage.getItem('authToken')
                     setSuccess(true);
-                    console.log(res.data)
                     
                     axios
                         .get('http://localhost:8080/current', {
@@ -50,8 +50,8 @@ function LoginPage() {
                         })
                         .then(res => {
                             const stringifiedEmail = JSON.stringify(res.data.email);
-                            console.log(stringifiedEmail)
                             sessionStorage.setItem('currentEmail', stringifiedEmail);
+                            
                         })
                         .catch(err => {
                             console.log(err)
@@ -59,6 +59,8 @@ function LoginPage() {
                 })
                 .catch(err => {
                     setSuccess(false);
+                    console.log(err)
+                    setInvalidLogin('Invalid email or password!')
                 })
         } else {
             console.log('empty form inputs');
@@ -96,6 +98,7 @@ function LoginPage() {
             <button className='login__button button'>Login</button>
             {success ? <Redirect to='/'/> : ''}
         </form>
+        <label className='login__invalid'>{invalidLogin}</label>
         <Link to='/signup' className='login__link'>
             Don't have an account? Click here to sign up
         </Link>

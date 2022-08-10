@@ -27,7 +27,7 @@
         text-decoration: none;
         color: #2083d4;
         font-size: 1rem;
-        margin: 2rem auto;
+        margin: 1rem auto 2rem;
     }
     &__missing {
         margin-top: .25rem;
@@ -39,6 +39,12 @@
     }
     &__heading {
         margin: 1.5rem 0 .5rem;
+    }
+    &__invalid {
+        margin-top: 1rem;
+        text-align: center;
+        font-weight: 600;
+        color: rgb(230, 20, 20);
     }
     @include tablet {
         &__form {
