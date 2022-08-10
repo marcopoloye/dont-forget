@@ -31,12 +31,13 @@
         width: 80%;
     }
     &__weather {
-        text-align: center;
         font-size: 1.1rem;
         color: rgb(48, 48, 48);
         margin: 0;
         &-link {
             text-decoration: none;
+            display: flex;
+            justify-content: center;
         }
     }
     &__success {

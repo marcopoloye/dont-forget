@@ -67,7 +67,7 @@ function SignUpPage () {
         <div className="signup">
             <h1 className="signup__heading" htmlFor='signup-form'>Sign up for an account</h1>
             <form className="signup__form" id='signup-form' onSubmit={handleSubmit}>
-                <label className="signup__label" htmlFor='signup-firstname'>First Name</label>
+                <label className="signup__label" htmlFor='signup-firstname'>First Name:</label>
                 <input 
                     type='text' 
                     id='signup-firstname' 
@@ -77,7 +77,7 @@ function SignUpPage () {
                     placeholder='Enter your first name'
                 />
                 <label className='signup__missing--hidden' id='error'>Please enter a first name</label>
-                <label className="signup__label" htmlFor='signup-lastname'>Last Name</label>
+                <label className="signup__label" htmlFor='signup-lastname'>Last Name:</label>
                 <input 
                     type='text' 
                     id='signup-lastname' 
@@ -87,7 +87,7 @@ function SignUpPage () {
                     placeholder='Enter your last name'
                 />
                 <label className='signup__missing--hidden' id='error'>Please enter a last name</label>
-                <label className="signup__label" htmlFor='signup-email'>Email</label>
+                <label className="signup__label" htmlFor='signup-email'>Email:</label>
                 <input 
                     type='text' 
                     id='signup-email' 
@@ -97,7 +97,7 @@ function SignUpPage () {
                     placeholder='Enter your email'
                 />
                 <label className='signup__missing--hidden' id='error'>Please enter an email</label>
-                <label className="signup__label" htmlFor='signup-password'>Password</label>
+                <label className="signup__label" htmlFor='signup-password'>Password:</label>
                 <input 
                     type='password' 
                     id='signup-password' 
