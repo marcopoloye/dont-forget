@@ -26,9 +26,23 @@
             &--green {
                 background: url('../../assets/icons/check.svg') no-repeat;
                 margin-right: .5rem;
+
+                &:hover {
+                    background: url('../../assets/icons/check-light.svg') no-repeat;
+                }
+                &:active {
+                    background: url('../../assets/icons/check-dark.svg') no-repeat;
+                }
             }
             &--red {
                 background: url('../../assets/icons/cross.svg') no-repeat;
+                
+                &:hover {
+                    background: url('../../assets/icons/cross-light.svg') no-repeat;
+                }
+                &:active {
+                    background: url('../../assets/icons/cross-dark.svg') no-repeat;
+                }
             }
         }
         &:hover {

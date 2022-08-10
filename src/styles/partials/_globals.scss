@@ -10,10 +10,13 @@ body {
     border: none;
     font-family: SourceSans;
     font-size: 1rem;
-    background: #AEECFF;
+    background: #a2e8fd;
     color: #323232;
     cursor: pointer;
     &:hover {
+        background: #b5eeff;
+    }
+    &:active {
         background: #6ecfec;
     }
     &--hidden {
@@ -24,7 +27,10 @@ body {
 .input {
     border: 1px solid #575757;
     border-radius: 30px;
-    
+    &:hover {
+        background: rgb(240, 240, 240);
+        border: 2px solid rgb(100, 100, 100);
+    }
     &::placeholder {
         font-family: SourceSans;
         font-size: 1rem;

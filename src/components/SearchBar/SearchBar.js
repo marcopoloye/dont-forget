@@ -35,7 +35,7 @@ function SearchBar({locationInput, setLocationInput}) {
                     const destinationId = response.data.id;
                     setDestination(destinationId);
                     setWeatherData(`It is currently ${temperature} °C in ${destination}`);
-                    sessionStorage.setItem('destination', destination);
+                    sessionStorage.setItem('currentDestination', destination);
 
                     if (`${temperature}` >= 20) {
                         axios
@@ -86,11 +86,11 @@ function SearchBar({locationInput, setLocationInput}) {
             setLocationInput('');
         }
     }
-    const handleClick = () => {
-        const destination= sessionStorage.getItem('destination')
-        const newnew = items.map(item => ({...item, destination: destination}));
+    const handleSave = () => {
+        const destination= sessionStorage.getItem('currentDestination');
+        const savedList = items.map(item => ({...item, destination: destination}));
 
-        sessionStorage.setItem('newList', JSON.stringify(newnew));
+        sessionStorage.setItem('currentSavedList', JSON.stringify(savedList));
 
         const authToken = sessionStorage.getItem('authToken');
 
@@ -106,11 +106,12 @@ function SearchBar({locationInput, setLocationInput}) {
                 axios
                     .post(`http://localhost:8080/savelist`, {
                         email: email,
-                        lists: newnew
+                        lists: savedList
                     })
                     .then(res => {
                         console.log(res)
                     })
+                    
             })
     }
 
@@ -137,7 +138,7 @@ function SearchBar({locationInput, setLocationInput}) {
                 setItems={setItems}
             />
 
-            <button className={`${weatherData ? 'search__button-save button' : 'button--hidden'}`} onClick={handleClick}>Save to My List</button>
+            <button className={`${weatherData ? 'search__button-save button' : 'button--hidden'}`} onClick={handleSave}>Save to My List</button>
         </>
 
     );

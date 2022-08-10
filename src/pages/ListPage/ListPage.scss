@@ -27,13 +27,26 @@
                 padding: 1rem;
                 border-radius: 3px;
                 cursor: pointer;
+
             }
             &--green {
                 background: url('../../assets/icons/check.svg') no-repeat;
                 margin-right: .5rem;
+                &:hover {
+                    background: url('../../assets/icons/check-light.svg') no-repeat;
+                }
+                &:active {
+                    background: url('../../assets/icons/check-dark.svg') no-repeat;
+                }
             }
             &--red {
                 background: url('../../assets/icons/cross.svg') no-repeat;
+                &:hover {
+                    background: url('../../assets/icons/cross-light.svg') no-repeat;
+                }
+                &:active {
+                    background: url('../../assets/icons/cross-dark.svg') no-repeat;
+                }
             }
         }
         &:hover {
@@ -44,6 +57,9 @@
             text-decoration: line-through;
             color: #B92626;
         }
+    }
+    &__heading {
+        margin: 1.25rem auto;
     }
     &__list {
         list-style: none;
@@ -59,7 +75,7 @@
     }
     &__failed-link {
         text-decoration: none;
-        color: rgb(25, 153, 175);
+        color: #2083d4;
     }
     &__destination {
         margin-bottom: 0;

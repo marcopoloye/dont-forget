@@ -44,6 +44,9 @@ class ProfilePage extends Component {
             failedAuth: true
         });
         sessionStorage.removeItem('authToken');
+        sessionStorage.removeItem('currentEmail');
+        sessionStorage.removeItem('currentSavedList');
+        sessionStorage.removeItem('currentDestination');
     }
     
     render() {

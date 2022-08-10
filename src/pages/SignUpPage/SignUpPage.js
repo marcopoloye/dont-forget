@@ -7,6 +7,7 @@ function SignUpPage () {
     const [lastNameInput, setLastNameInput] = useState('');
     const [emailInput, setEmailInput] = useState('');
     const [passwordInput, setPasswordInput] = useState('');
+    const [success, setSuccess] = useState('')
 
     const handleFirstNameInput = (e) => {
         setFirstNameInput(e.target.value);
@@ -28,6 +29,17 @@ function SignUpPage () {
     const handleSubmit = (e) => {
         e.preventDefault();
 
+        for (let i=0; i < 4; i++) {
+            const inputs = e.target[i].value;
+
+            if (!inputs) {
+                e.target[i].nextSibling.classList.remove('signup__missing--hidden')
+                e.target[i].nextSibling.classList.add('signup__missing')
+            } else {
+                e.target[i].nextSibling.classList.add('signup__missing--hidden')
+            }
+        }
+
         if (e.target[0].value && e.target[1].value && e.target[2].value && e.target[3].value) {
             axios
                 .post(`http://localhost:8080/register`, {
@@ -39,13 +51,16 @@ function SignUpPage () {
                 .catch (error => {
                     console.log('Error signing up', error);
                 });
+            
+            setFirstNameInput('');
+            setLastNameInput('');
+            setEmailInput('');
+            setPasswordInput('');
+            setSuccess('Sign up successful!');
         } else {
             console.log('empty form inputs');
         };
-        setFirstNameInput('');
-        setLastNameInput('');
-        setEmailInput('');
-        setPasswordInput('');
+
     };
 
     return (
@@ -59,7 +74,9 @@ function SignUpPage () {
                     value={firstNameInput} 
                     onChange={handleFirstNameInput}
                     className='signup__input input'
+                    placeholder='Enter your first name'
                 />
+                <label className='signup__missing--hidden' id='error'>Please enter a first name</label>
                 <label className="signup__label" htmlFor='signup-lastname'>Last Name</label>
                 <input 
                     type='text' 
@@ -67,7 +84,9 @@ function SignUpPage () {
                     value={lastNameInput} 
                     onChange={handleLastNameInput}
                     className='signup__input input'
+                    placeholder='Enter your last name'
                 />
+                <label className='signup__missing--hidden' id='error'>Please enter a last name</label>
                 <label className="signup__label" htmlFor='signup-email'>Email</label>
                 <input 
                     type='text' 
@@ -75,7 +94,9 @@ function SignUpPage () {
                     value={emailInput} 
                     onChange={handleEmailInput}
                     className='signup__input input'
+                    placeholder='Enter your email'
                 />
+                <label className='signup__missing--hidden' id='error'>Please enter an email</label>
                 <label className="signup__label" htmlFor='signup-password'>Password</label>
                 <input 
                     type='password' 
@@ -83,8 +104,11 @@ function SignUpPage () {
                     value={passwordInput} 
                     onChange={handlePasswordInput}
                     className='signup__input input'
+                    placeholder='Enter your password'
                 />
+                <label className='signup__missing--hidden' id='error'>Please enter a password</label>
                 <button className="signup__button button">Sign up</button>
+                <p className='signup__success'>{success}</p>
             </form>
         </div>
     );
