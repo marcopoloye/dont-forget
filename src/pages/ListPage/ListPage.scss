@@ -1,9 +1,9 @@
 @use '../../styles/partials/breakpoints' as *;
 
 .listpage {
-    margin-top: 5rem;
     display: flex;
     flex-direction: column;
+    margin: 0;
 
     &__items, &__items--strike {
         margin-top: 1rem;
@@ -59,7 +59,7 @@
         }
     }
     &__heading {
-        margin: 1.25rem auto;
+        margin: 6.25rem auto 1.25rem;
     }
     &__list {
         list-style: none;
@@ -89,6 +89,7 @@
         margin-top: 1rem;
         padding: .75rem .5rem;
         width: 48%;
+        
         &-container {
             display: flex;
             justify-content: space-between;
@@ -115,7 +116,7 @@
         }
     }
     @include tablet {
-        margin-top: 5rem;
+        margin-top: 0rem;
 
         &__form {
             &-container {
@@ -127,7 +128,7 @@
         }
     }
     @include desktop {
-        margin-top: 5rem;
+        margin-top: 0rem;
     }
 }
 

@@ -19,6 +19,17 @@ function LoginPage() {
     const handleLogin = (e) => {
         e.preventDefault();
 
+        for (let i=0; i < 2; i++) {
+            const inputs = e.target[i].value;
+
+            if (!inputs) {
+                e.target[i].nextSibling.classList.remove('login__missing--hidden')
+                e.target[i].nextSibling.classList.add('login__missing')
+            } else {
+                e.target[i].nextSibling.classList.add('login__missing--hidden')
+            }
+        }
+
         if (e.target[0].value && e.target[1].value) {
             axios
                 .post(`http://localhost:8080/login`, {
@@ -69,6 +80,7 @@ function LoginPage() {
                 onChange={handleEmailInput}
                 placeholder='Enter your email'
             />
+            <label className='login__missing--hidden' id='error'>Please enter an email</label>
             <label htmlFor='login-password' className='login__label'>
                 Password:
             </label>
@@ -80,6 +92,7 @@ function LoginPage() {
                 onChange={handlePasswordInput}
                 placeholder='Enter your password'
             />
+            <label className='login__missing--hidden' id='error'>Please enter a password</label>
             <button className='login__button button'>Login</button>
             {success ? <Redirect to='/'/> : ''}
         </form>
