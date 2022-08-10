@@ -21,7 +21,7 @@
             width: 50%;
             max-width: 200px;
             margin: 1rem auto 2rem;
-            padding: .5rem 1rem;
+            padding: .75rem 1rem;
         }
     }
     &__input {
@@ -35,6 +35,12 @@
         font-size: 1.1rem;
         color: rgb(48, 48, 48);
         margin-bottom: 0;
+    }
+    &__success {
+        text-align: center;
+        font-weight: 600;
+        color: rgb(230, 20, 20);
+        margin-top: 0;
     }
     @include tablet {
         &__form {

@@ -2,7 +2,7 @@ import './ListPage.scss';
 import { Component } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-
+import { Redirect } from 'react-router-dom';
 
 class ListPage extends Component {
   state = {
@@ -27,10 +27,6 @@ class ListPage extends Component {
         }
       })
       .then((res) => {
-        const stringifiedEmail = JSON.stringify(res.data.email);
-        sessionStorage.setItem('currentEmail', stringifiedEmail);
-        // console.log(this.state.user)
-        // console.log(res.data.lists)
         const parsedList = JSON.parse(res.data.lists)
         this.setState({
           user: res.data,
@@ -56,7 +52,7 @@ class ListPage extends Component {
     })
   }
 
-  completeHandler = (e) => {
+  packedHandler = (e) => {
     const selectedItem = e.target.id;
 
     const editedList = this.state.items.map((item) => {
@@ -73,7 +69,6 @@ class ListPage extends Component {
   }
 
   handleSave = () => {
-    const destination = sessionStorage.getItem('currentDestination');
     const parsedEmail = JSON.parse(sessionStorage.getItem('currentEmail'));
     const mostCurrentList = this.state.items;
 
@@ -91,8 +86,6 @@ class ListPage extends Component {
   }
 
   handleDelete = () => {
-    console.log(this.state.items)
-    const mostCurrentList = this.state.items;
     const parsedEmail = JSON.parse(sessionStorage.getItem('currentEmail'));
 
     axios
@@ -102,41 +95,29 @@ class ListPage extends Component {
       })
       .then(res => {
           console.log(res);
+          window.location.reload();
       })
       .catch(err => {
         console.log(err);
       })
-      window.location.reload();
   }
 
   render() {
     if (this.state.failedAuth) {
       return (
-        <main>
-          <p className='listpage__failed-message'>
-              You must be logged in to see this page.{' '}
-              <Link to="/login" className='listpage__failed-link'>Click here to log in.</Link>
-          </p>
-        </main>
+        <Redirect to='/login'/>
       );
-    }
-
-    if (!this.state.user) {
-      return (
-        <main className="dashboard">
-          <p>... Loading ...</p>
-        </main>
-      )
     }
 
     if (!this.state.items) {
       return (
         <main className='listpage'>
           <h2 className='listpage__heading'>My Lists</h2>
-          <p className='listpage__text'>No lists found</p>
+          <p className='listpage__text'>Nothing seems to be here...</p>
         </main>
       )
     }
+
     return (
       <div className='listpage'>
         <h2 className='listpage__heading'>My Lists</h2>
@@ -148,14 +129,17 @@ class ListPage extends Component {
             <li key={items.id} className={`${items.packed ? 'listpage__items--strike' : 'listpage__items'}`}>
               {items.itemName}
               <div className='listpage__items-button-container' >
-                <div className='listpage__items-button--green' id={items.id} onClick={this.completeHandler}/>
+                <div className='listpage__items-button--green' id={items.id} onClick={this.packedHandler}/>
                 <div className='listpage__items-button--red' id={items.id} onClick={this.deleteHandler}/>
               </div>
             </li>
           ))}
+        <div className='listpage__form-buttons-container'>
+          <button className='listpage__form-buttons button' onClick={this.handleSave}>Save Changes</button>
+          <button className='listpage__form-buttons button' onClick={this.handleDelete}>Delete List</button>
+        </div>
+
         </ul>
-        <button onClick={this.handleSave}>Save List</button>
-        <button onClick={this.handleDelete}>Delete List</button>
       </div>
     )
   }

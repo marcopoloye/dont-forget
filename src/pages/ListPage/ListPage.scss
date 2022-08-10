@@ -83,6 +83,18 @@
         justify-content: center;
         font-weight: 600;
     }
+    &__text {
+        text-align: center;
+    }
+    &__form-buttons {
+        margin-top: 1rem;
+        padding: .75rem .5rem;
+        width: 45%;
+        &-container {
+            display: flex;
+            justify-content: space-between;
+        }
+    }
     @include tablet {
         margin: 5rem 5rem;
     }

@@ -12,6 +12,7 @@ function SearchBar({locationInput, setLocationInput}) {
     const [weatherData, setWeatherData] = useState('');
     const [savedItems, setSavedItems] = useState([]);
     const [destination, setDestination] = useState('');
+    const [saveSuccess, setSaveSuccess] = useState('');
 
     const API_KEY = process.env.REACT_APP_WEATHER_API_KEY;
 
@@ -33,6 +34,7 @@ function SearchBar({locationInput, setLocationInput}) {
                     const country = response.data.sys.country;
                     const destination = (`${city}, ${country}`);
                     const destinationId = response.data.id;
+
                     setDestination(destinationId);
                     setWeatherData(`It is currently ${temperature} °C in ${destination}`);
                     sessionStorage.setItem('currentDestination', destination);
@@ -87,32 +89,42 @@ function SearchBar({locationInput, setLocationInput}) {
         }
     }
     const handleSave = () => {
-        const destination= sessionStorage.getItem('currentDestination');
-        const savedList = items.map(item => ({...item, destination: destination}));
-
-        sessionStorage.setItem('currentSavedList', JSON.stringify(savedList));
-
         const authToken = sessionStorage.getItem('authToken');
+        const destination = sessionStorage.getItem('currentDestination');
+        const editedList = items.map(item => ({...item, destination: destination}));
 
-        axios
-            .get('http://localhost:8080/current', {
-                headers: {
-                Authorization: `Bearer ${authToken}`
-                }
-            })
-            .then((res) => {
-                const email= res.data.email;
-                
-                axios
-                    .post(`http://localhost:8080/savelist`, {
-                        email: email,
-                        lists: savedList
-                    })
-                    .then(res => {
-                        console.log(res)
-                    })
+        sessionStorage.setItem('currentSavedList', JSON.stringify(editedList));
+        
+        if (authToken) {
+            axios
+                .get('http://localhost:8080/current', {
+                    headers: {
+                        Authorization: `Bearer ${authToken}`
+                    }
+                })
+                .then((res) => {
+                    const email= res.data.email;
                     
-            })
+                    axios
+                        .post(`http://localhost:8080/savelist`, {
+                            email: email,
+                            lists: editedList
+                        })
+                        .then(res => {
+                            console.log(res)
+                        })
+                        .catch(err => {
+                            console.log(err);
+                        });     
+                })
+                .catch(err => {
+                    console.log(err);
+                });
+            
+            setSaveSuccess(`List for ${destination} successfully saved to My Lists!`);
+        } else {
+            setSaveSuccess(`Please login to save this list for ${destination}!`)
+        }
     }
 
     return (
@@ -138,7 +150,8 @@ function SearchBar({locationInput, setLocationInput}) {
                 setItems={setItems}
             />
 
-            <button className={`${weatherData ? 'search__button-save button' : 'button--hidden'}`} onClick={handleSave}>Save to My List</button>
+            <button className={`${weatherData ? 'search__button-save button' : 'button--hidden'}`} onClick={handleSave}> Save to My List </button>
+            <p className='search__success'>{saveSuccess}</p>
         </>
 
     );

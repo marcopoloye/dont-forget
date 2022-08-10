@@ -1,6 +1,6 @@
 import { Component } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import './ProfilePage.scss'
 
 class ProfilePage extends Component {
@@ -52,12 +52,7 @@ class ProfilePage extends Component {
     render() {
         if (this.state.failedAuth) {
             return (
-                <main>
-                    <p className='profilepage__failed-message'>
-                        You must be logged in to see this page.{' '}
-                        <Link to="/login" className='profilepage__failed-link'>Click here to log in.</Link>
-                    </p>
-                </main>
+                <Redirect to='/login'/>
             );
         }
     
@@ -75,7 +70,10 @@ class ProfilePage extends Component {
         <div className='profilepage'>
             <h2 className='profilepage__heading'>My Profile</h2>
             <p className='profilepage__text'>
-                <b>Name: </b>{first_name}, {last_name}
+                <b>First name: </b>{first_name}
+            </p>
+            <p className='profilepage__text'>
+                <b>Last name: </b>{last_name}
             </p>
             <p className='profilepage__text'>
                 <b>Email: </b> {email}

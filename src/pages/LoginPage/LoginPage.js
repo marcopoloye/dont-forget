@@ -6,7 +6,6 @@ import { Link, Redirect } from 'react-router-dom';
 function LoginPage() {
     const [emailInput, setEmailInput] = useState('');
     const [passwordInput, setPasswordInput] = useState('');
-    const [error, setError] = useState('');
     const [success, setSuccess] = useState(false)
 
     const handleEmailInput = (e) => {
@@ -17,7 +16,7 @@ function LoginPage() {
         setPasswordInput(e.target.value);
     };
 
-    const handleSubmit = (e) => {
+    const handleLogin = (e) => {
         e.preventDefault();
 
         if (e.target[0].value && e.target[1].value) {
@@ -28,11 +27,26 @@ function LoginPage() {
                 })
                 .then(res => {
                     sessionStorage.setItem('authToken', res.data.token);
-                    setError('');
+                    const token = sessionStorage.getItem('authToken')
                     setSuccess(true);
+                    console.log(res.data)
+                    
+                    axios
+                        .get('http://localhost:8080/current', {
+                            headers: {
+                                Authorization: `Bearer ${token}`
+                            }
+                        })
+                        .then(res => {
+                            const stringifiedEmail = JSON.stringify(res.data.email);
+                            console.log(stringifiedEmail)
+                            sessionStorage.setItem('currentEmail', stringifiedEmail);
+                        })
+                        .catch(err => {
+                            console.log(err)
+                        });
                 })
                 .catch(err => {
-                    setError(err.response.data);
                     setSuccess(false);
                 })
         } else {
@@ -43,7 +57,7 @@ function LoginPage() {
     return (
       <div className='login'>
         <h2 htmlFor='login-form' className='login__heading'>Login</h2>
-        <form className="login__form" id='login-form' onSubmit={handleSubmit}>
+        <form className="login__form" id='login-form' onSubmit={handleLogin}>
             <label htmlFor='login-email' className='login__label'>
                 Email:
             </label>
