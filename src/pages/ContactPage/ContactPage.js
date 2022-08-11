@@ -1,4 +1,4 @@
-import './ContactPage.scss'
+import './ContactPage.scss';
 
 function ContactPage() {
     return (
@@ -17,6 +17,6 @@ function ContactPage() {
             </div>
         </div>
     );
-}
+};
 
 export default ContactPage;

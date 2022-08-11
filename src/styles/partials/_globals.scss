@@ -3,7 +3,7 @@
 
 body {
     font-family: SourceSans;
-}
+};
 
 .button {
     border-radius: 30px;
@@ -15,14 +15,14 @@ body {
     cursor: pointer;
     &:hover {
         background: #bef0ff;
-    }
+    };
     &:active {
         background: #60c1df;
-    }
+    };
     &--hidden {
         display: none;
-    }
-}
+    };
+};
 
 .input {
     border: 1px solid #575757;
@@ -30,11 +30,9 @@ body {
     &:hover {
         background: rgb(240, 240, 240);
         border: 2px solid rgb(100, 100, 100);
-    }
+    };
     &::placeholder {
         font-family: SourceSans;
         font-size: 1rem;
-    }
-}
-
-
+    };
+};

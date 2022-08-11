@@ -11,8 +11,7 @@ function AboutPage() {
                 <p className='aboutpage__text'>Created by: <Link to='/contact' className='aboutpage__link'>Marco Ye</Link></p>
             </div>
         </div>
-
     );
-}
+};
 
 export default AboutPage;

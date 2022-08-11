@@ -7,7 +7,7 @@ function SignUpPage () {
     const [lastNameInput, setLastNameInput] = useState('');
     const [emailInput, setEmailInput] = useState('');
     const [passwordInput, setPasswordInput] = useState('');
-    const [success, setSuccess] = useState('')
+    const [success, setSuccess] = useState('');
 
     const handleFirstNameInput = (e) => {
         setFirstNameInput(e.target.value);
@@ -25,7 +25,6 @@ function SignUpPage () {
         setPasswordInput(e.target.value);
     };
 
-
     const handleSubmit = (e) => {
         e.preventDefault();
 
@@ -33,24 +32,23 @@ function SignUpPage () {
             const inputs = e.target[i].value;
 
             if (!inputs) {
-                e.target[i].nextSibling.classList.remove('signup__missing--hidden')
-                e.target[i].nextSibling.classList.add('signup__missing')
+                e.target[i].nextSibling.classList.remove('signup__missing--hidden');
+                e.target[i].nextSibling.classList.add('signup__missing');
             } else {
-                e.target[i].nextSibling.classList.add('signup__missing--hidden')
-            }
-        }
+                e.target[i].nextSibling.classList.add('signup__missing--hidden');
+            };
+        };
 
         if (e.target[0].value && e.target[1].value && e.target[2].value && e.target[3].value) {
-            axios
-                .post(`http://localhost:8080/register`, {
-                    firstName: e.target[0].value,
-                    lastName: e.target[1].value,
-                    email: e.target[2].value,
-                    password: e.target[3].value
-                })
-                .catch (error => {
-                    console.log('Error signing up', error);
-                });
+            axios.post(`http://localhost:8080/register`, {
+                firstName: e.target[0].value,
+                lastName: e.target[1].value,
+                email: e.target[2].value,
+                password: e.target[3].value
+            })
+            .catch (error => {
+                console.log('Error signing up', error);
+            });
             
             setFirstNameInput('');
             setLastNameInput('');
@@ -60,7 +58,6 @@ function SignUpPage () {
         } else {
             console.log('empty form inputs');
         };
-
     };
 
     return (
@@ -112,6 +109,6 @@ function SignUpPage () {
             </form>
         </div>
     );
-}
+};
 
 export default SignUpPage;

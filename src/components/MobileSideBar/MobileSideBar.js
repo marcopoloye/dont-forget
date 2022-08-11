@@ -1,6 +1,6 @@
+import './MobileSideBar.scss';
 import React from 'react';
 import { slide as Menu } from 'react-burger-menu';
-import './MobileSideBar.scss';
 import { Link } from 'react-router-dom';
 
 function MobileSideBar() {
@@ -33,6 +33,6 @@ function MobileSideBar() {
             </Link>
         </Menu>
     );
-}
+};
 
 export default MobileSideBar;

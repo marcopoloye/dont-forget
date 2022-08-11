@@ -1,9 +1,9 @@
 import './ListPage.scss';
 import { Component } from 'react';
-import axios from 'axios';
 import { Redirect } from 'react-router-dom';
-import DeleteListModal from '../../components/DeleteListModal/DeleteListModal';
 import { v4 as uuid } from 'uuid';
+import axios from 'axios';
+import DeleteListModal from '../../components/DeleteListModal/DeleteListModal';
 
 class ListPage extends Component {
   state = {
@@ -14,7 +14,7 @@ class ListPage extends Component {
     modal: false,
     currentInput: '',
     currentList: []
-  }
+  };
 
   componentDidMount() {
     const authToken = sessionStorage.getItem('authToken');
@@ -23,38 +23,39 @@ class ListPage extends Component {
       this.setState({
         failedAuth: true
       });
-    }
+    };
 
-    axios
-      .get('http://localhost:8080/current', {
-        headers: {
-          Authorization: `Bearer ${authToken}`
-        }
-      })
-      .then((res) => {
-        const parsedList = JSON.parse(res.data.lists)
-        this.setState({
-          user: res.data,
-          failedAuth: false,
-          items: parsedList
-        });
-      })
-      .catch(err => {
-        console.log(err)
-        this.setState({
-          failedAuth: true
-        });
+    axios.get('http://localhost:8080/current', {
+      headers: {
+        Authorization: `Bearer ${authToken}`
+      }
+    })
+    .then(res => {
+      const parsedList = JSON.parse(res.data.lists);
+
+      this.setState({
+        user: res.data,
+        failedAuth: false,
+        items: parsedList
       });
-  }
+    })
+    .catch(err => {
+      console.log(err);
+
+      this.setState({
+        failedAuth: true
+      });
+    });
+  };
   
   deleteItemHandler = (e) => {
     const selectedItem = e.target.id;
-    const filteredList = this.state.items.filter((item) => item.id !== selectedItem)
+    const filteredList = this.state.items.filter((item) => item.id !== selectedItem);
 
     this.setState({
       items: filteredList
-    })
-  }
+    });
+  };
 
   checkItemHandler = (e) => {
     const selectedItem = e.target.id;
@@ -65,82 +66,82 @@ class ListPage extends Component {
           ...item, packed: !item.packed
         }
       } return item
-    })
+    });
 
     this.setState({
       items: editedList
-    })
-  }
+    });
+  };
 
   handleSaveList = () => {
     const parsedEmail = JSON.parse(sessionStorage.getItem('currentEmail'));
     const mostCurrentList = this.state.items;
 
-    axios
-      .post(`http://localhost:8080/savelist`, {
-          email: parsedEmail,
-          lists: mostCurrentList
-      })
-      .then(res => {
-          console.log(res);
-          this.setState({
-            saveSuccess: `Successfully saved changes for ${this.state.items[0].destination}!`
-          })
-      })
-      .catch(err => {
-        console.log(err);
-      })
-  }
+    axios.post(`http://localhost:8080/savelist`, {
+      email: parsedEmail,
+      lists: mostCurrentList
+    })
+    .then(res => {
+      console.log(res);
+
+      this.setState({
+        saveSuccess: `Successfully saved changes for ${this.state.items[0].destination}!`
+      });
+    })
+    .catch(err => {
+      console.log(err);
+    });
+  };
+
   handleDeleteList = () => {
     const parsedEmail = JSON.parse(sessionStorage.getItem('currentEmail'));
 
-    axios
-      .post(`http://localhost:8080/savelist`, {
-          email: parsedEmail,
-          lists: null
-      })
-      .then(res => {
-          console.log(res);
-          window.location.reload();
-      })
-      .catch(err => {
-        console.log(err);
-      })
-  }
+    axios.post(`http://localhost:8080/savelist`, {
+      email: parsedEmail,
+      lists: null
+    })
+    .then(res => {
+      console.log(res);
+      window.location.reload();
+    })
+    .catch(err => {
+      console.log(err);
+    });
+  };
 
   openModal = () => {
     this.setState({
       modal: true
-    })
-  }
+    });
+  };
 
   closeModal = () => {
     this.setState({
       modal: false
-    })
-  }
+    });
+  };
 
   handleInputChange = (e) => {
-    e.preventDefault()
+    e.preventDefault();
 
     this.setState({
       currentInput: e.target.value
-    })
-  }
+    });
+  };
 
   handleSubmit = (e) => {
-    e.preventDefault()
+    e.preventDefault();
     const mostCurrentList = this.state.items;
     const inputValue = e.target[0].value;
 
     if (inputValue) {
       if (mostCurrentList.findIndex(item => item.itemName.toLowerCase() === inputValue.toLowerCase()) !== -1) {
-        console.log('same value')
+        console.log('same value');
       } else {
         this.setState({
           items: [...mostCurrentList, {itemName: inputValue, packed: false, id: uuid()}],
           currentInput: ''
-        })
+        });
       }
     } else {
       console.log('empty input');
@@ -152,7 +153,7 @@ class ListPage extends Component {
       return (
         <Redirect to='/login'/>
       );
-    }
+    };
 
     if (!this.state.items) {
       return (
@@ -160,8 +161,8 @@ class ListPage extends Component {
           <h2 className='listpage__heading'>My Lists</h2>
           <p className='listpage__text'>Nothing seems to be here...</p>
         </main>
-      )
-    }
+      );
+    };
 
     return (
       <div className='listpage'>
@@ -172,7 +173,13 @@ class ListPage extends Component {
         <div>
           <form className='listpage__form' onSubmit={this.handleSubmit}>
             <div className='listpage__form-container'>
-              <input className='listpage__form-input input' type='text' onChange={this.handleInputChange} value={this.state.currentInput} placeholder='Add an item'></input>
+              <input 
+                className='listpage__form-input input' 
+                type='text' 
+                onChange={this.handleInputChange} 
+                value={this.state.currentInput} 
+                placeholder='Add an item'
+              />
               <button className='listpage__form-button button' type='submit'>Add</button>
             </div>
           </form>
@@ -189,14 +196,14 @@ class ListPage extends Component {
           ))}
         <div className='listpage__buttons-container'>
           <button className='listpage__buttons button' onClick={this.handleSaveList}>Save Changes</button>
-          <button className='listpage__buttons button' id='delete-button' onClick={this.openModal}>Delete List</button>
+          <button className='listpage__buttons button' onClick={this.openModal} id='delete-button'>Delete List</button>
         </div>
         </ul>
         <p className='listpage__success'>{this.state.saveSuccess}</p>
         {this.state.modal && <DeleteListModal destination={this.state.items[0].destination} closeModal={this.closeModal} deleteList={this.handleDeleteList}/>}
       </div>
-    )
-  }
-}
+    );
+  };
+};
 
 export default ListPage;

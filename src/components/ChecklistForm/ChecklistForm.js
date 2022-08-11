@@ -1,13 +1,12 @@
+import './ChecklistForm.scss';
 import React from 'react';
 import { v4 as uuid } from 'uuid';
-import './ChecklistForm.scss';
-import '../../styles/partials/_globals.scss';
 
 function ChecklistForm ({inputText, setInputText, items, setItems, weatherData}) {
 
     const handleChange = (e) => {
-        setInputText(e.target.value)
-    }
+        setInputText(e.target.value);
+    };
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -16,15 +15,15 @@ function ChecklistForm ({inputText, setInputText, items, setItems, weatherData})
         if (inputValue) {
 
             if (items.findIndex(item => item.itemName.toLowerCase() === inputValue.toLowerCase()) !== -1) {
-                console.log('same value')
+                console.log('same value');
             } else {
                 setItems([...items, {itemName: inputText, packed: false, id: uuid()}]);
                 setInputText('');
-            }
+            };
         } else {
             console.log('empty input');
-        }
-    }
+        };
+    };
 
     return (
         <>
@@ -37,6 +36,6 @@ function ChecklistForm ({inputText, setInputText, items, setItems, weatherData})
             </form>
         </>
     );
-}
+};
 
 export default ChecklistForm ;

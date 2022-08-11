@@ -1,67 +1,69 @@
+import './ProfilePage.scss'
 import { Component } from 'react';
 import axios from 'axios';
 import { Redirect } from 'react-router-dom';
-import './ProfilePage.scss'
+
 
 class ProfilePage extends Component {
     state = {
         failedAuth: false,
         user: null
-    }
+    };
     
     componentDidMount() {
         const authToken = sessionStorage.getItem('authToken');
     
         if (!authToken) {
-        this.setState({
-            failedAuth: true
-        });
-        }
+            this.setState({
+                failedAuth: true
+            });
+        };
     
-        axios
-        .get('http://localhost:8080/current', {
+        axios.get('http://localhost:8080/current', {
             headers: {
-            Authorization: `Bearer ${authToken}`
+                Authorization: `Bearer ${authToken}`
             }
         })
         .then((res) => {
             console.log('User Auth Success:', res.data);
+
             this.setState({
-            user: res.data,
-            failedAuth: false
-            })
+                user: res.data,
+                failedAuth: false
+            });
         })
         .catch(err => {
             this.setState({
-            failedAuth: true
+                failedAuth: true
             });
         });
-    }
+    };
     
     handleLogout = () => {
         this.setState({
             user: null,
             failedAuth: true
         });
+
         sessionStorage.removeItem('authToken');
         sessionStorage.removeItem('currentEmail');
         sessionStorage.removeItem('currentDestination');
-    }
+    };
     
     render() {
         if (this.state.failedAuth) {
             return (
                 <Redirect to='/login'/>
             );
-        }
+        };
     
         if (!this.state.user) {
             return (
                 <main className="dashboard">
                     <p>... Loading ...</p>
                 </main>
-            )
-        }
+            );
+        };
     
         const { first_name, last_name, email, created_at} = this.state.user;
     
@@ -87,7 +89,7 @@ class ProfilePage extends Component {
                 </div>
             </div>
         );
-    }
-}
+    };
+};
 
 export default ProfilePage;

@@ -1,11 +1,10 @@
 import './ChecklistItems.scss';
-import '../../styles/partials/_globals.scss';
 
 function ChecklistItems({setItems, items, item}) {
 
     const deleteHandler = () => {
         setItems(items.filter((selectedItem) => selectedItem.id !== item.id));
-    }
+    };
 
     const completeHandler = () => {
         setItems(items.map(selectedItem => {
@@ -13,9 +12,9 @@ function ChecklistItems({setItems, items, item}) {
                 return {
                     ...selectedItem, packed: !selectedItem.packed
                 }
-            } return selectedItem
-        }))
-    }
+            } return selectedItem;
+        }));
+    };
 
     return (
         <>
@@ -26,9 +25,8 @@ function ChecklistItems({setItems, items, item}) {
                     <div className='checklist__items-button--red' onClick={deleteHandler}/>
                 </div>
             </li>
-
         </>
     );
-}
+};
 
 export default ChecklistItems;

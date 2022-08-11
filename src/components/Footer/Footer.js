@@ -18,6 +18,6 @@ function Footer() {
             </ul>
         </footer>
     );
-}
+};
 
 export default Footer;

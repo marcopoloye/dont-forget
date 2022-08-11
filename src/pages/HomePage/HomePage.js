@@ -1,6 +1,6 @@
+import './HomePage.scss';
 import React, { useState } from 'react';
 import SearchBar from '../../components/SearchBar/SearchBar';
-import './HomePage.scss';
 import logo from '../../assets/icons/logo.svg';
 
 function HomePage() {
@@ -17,6 +17,6 @@ function HomePage() {
             />
         </div>
     );
-}
+};
 
 export default HomePage;

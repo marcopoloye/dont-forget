@@ -3,12 +3,12 @@ import './DeleteListModal.scss';
 function DeleteListModal({destination, closeModal, deleteList}) {
 
     const handleCloseModal = () => {
-        closeModal()
-    }
+        closeModal();
+    };
 
     const handleDeleteList = () => {
-        deleteList()
-    }
+        deleteList();
+    };
 
     return (
         <div className='modal__background'>
@@ -24,11 +24,11 @@ function DeleteListModal({destination, closeModal, deleteList}) {
                 </p>
                 <div className='modal__footer'>
                     <button className='modal__button-footer button' onClick={handleCloseModal}>Cancel</button>
-                    <button className='modal__button-footer button' id='delete-button' onClick={handleDeleteList}>Delete</button>
+                    <button className='modal__button-footer button' onClick={handleDeleteList} id='delete-button'>Delete</button>
                 </div>
             </div>
         </div>
     );
-}
+};
 
 export default DeleteListModal;

@@ -1,9 +1,7 @@
-import ChecklistItems from "../ChecklistItems/ChecklistItems";
 import './ChecklistList.scss';
+import ChecklistItems from "../ChecklistItems/ChecklistItems";
 
 function ChecklistList({items, setItems}) {
-
-
     return (
         <>
             <ul className="checklist__list">
@@ -12,8 +10,7 @@ function ChecklistList({items, setItems}) {
                 ))}
             </ul>
         </>
-
     );
-}
+};
 
 export default ChecklistList;

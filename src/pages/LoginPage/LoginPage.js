@@ -28,43 +28,40 @@ function LoginPage() {
                 e.target[i].nextSibling.classList.add('login__missing')
             } else {
                 e.target[i].nextSibling.classList.add('login__missing--hidden')
-            }
-        }
+            };
+        };
 
         if (e.target[0].value && e.target[1].value) {
-            axios
-                .post(`http://localhost:8080/login`, {
-                    email: e.target[0].value,
-                    password: e.target[1].value
+            axios.post(`http://localhost:8080/login`, {
+                email: e.target[0].value,
+                password: e.target[1].value
+            })
+            .then(res => {
+                sessionStorage.setItem('authToken', res.data.token);
+                const token = sessionStorage.getItem('authToken');
+                setSuccess(true);
+                
+                axios.get('http://localhost:8080/current', {
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
                 })
                 .then(res => {
-                    sessionStorage.setItem('authToken', res.data.token);
-                    const token = sessionStorage.getItem('authToken')
-                    setSuccess(true);
-                    
-                    axios
-                        .get('http://localhost:8080/current', {
-                            headers: {
-                                Authorization: `Bearer ${token}`
-                            }
-                        })
-                        .then(res => {
-                            const stringifiedEmail = JSON.stringify(res.data.email);
-                            sessionStorage.setItem('currentEmail', stringifiedEmail);
-                            
-                        })
-                        .catch(err => {
-                            console.log(err)
-                        });
+                    const stringifiedEmail = JSON.stringify(res.data.email);
+                    sessionStorage.setItem('currentEmail', stringifiedEmail);
                 })
                 .catch(err => {
-                    setSuccess(false);
-                    console.log(err)
-                    setInvalidLogin('Invalid email or password!')
-                })
+                    console.log(err);
+                });
+            })
+            .catch(err => {
+                setSuccess(false);
+                console.log(err);
+                setInvalidLogin('Invalid email or password!');
+            });
         } else {
             console.log('empty form inputs');
-        }
+        };
     };
 
     return (
@@ -104,6 +101,6 @@ function LoginPage() {
         </Link>
       </div>  
     );
-}
+};
 
 export default LoginPage;

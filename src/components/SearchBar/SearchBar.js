@@ -1,5 +1,4 @@
 import './SearchBar.scss';
-import '../../styles/partials/_globals.scss';
 import axios from 'axios';
 import React, { useState} from 'react';
 import ChecklistForm from '../ChecklistForm/ChecklistForm';
@@ -16,7 +15,7 @@ function SearchBar({locationInput, setLocationInput}) {
 
     const handleSearchInput = (e) => {
         setLocationInput(e.target.value);
-    }
+    };
 
     const handleSearchSubmit = (e) => {
         e.preventDefault();
@@ -24,104 +23,103 @@ function SearchBar({locationInput, setLocationInput}) {
         const searchValue = e.target[0].value;
 
         if (searchValue) {
-            axios
-                .get (`https://api.openweathermap.org/data/2.5/weather?q=${searchValue}&appid=${API_KEY}`)
-                .then (response => {
-                    const temperature = Math.round((response.data.main.temp) - 273.15);
-                    const city = response.data.name;
-                    const country = response.data.sys.country;
+            axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${searchValue}&appid=${API_KEY}`)
+                .then(res => {
+                    const temperature = Math.round((res.data.main.temp) - 273.15);
+                    const city = res.data.name;
+                    const country = res.data.sys.country;
                     const destination = (`${city}, ${country}`);
-                    const destinationId = response.data.id;
+                    const destinationId = res.data.id;
 
-                    setWeatherLink(`https://openweathermap.org/city/${destinationId}`)
-                    setWeatherData(`It is currently ${temperature} °C in ${destination}. Click here for more details.`);
                     sessionStorage.setItem('currentDestination', destination);
 
-                    if (`${temperature}` >= 20) {
-                        axios
-                        .get (`http://localhost:8080/summer-items`)
-                        .then (response => {
-                            const itemsList = response.data;
-                            setItems(itemsList);
-                        })
-                        .catch (error => {
-                            console.log('Error getting items', error);
-                        });
-                    } else if (`${temperature}` < 20 && `${temperature}` > 14) {
-                        axios
-                        .get (`http://localhost:8080/spring-items`)
-                        .then (response => {
-                            const itemsList = response.data;
-                            setItems(itemsList);
-                        })
-                        .catch (error => {
-                            console.log('Error getting items', error);
-                        });
-                    } else if (`${temperature}` <= 14 && `${temperature}` > 9) {
-                        axios
-                        .get (`http://localhost:8080/fall-items`)
-                        .then (response => {
-                            const itemsList = response.data;
-                            setItems(itemsList);
-                        })
-                        .catch (error => {
-                            console.log('Error getting items', error);
-                        });
-                    } else if (`${temperature}` <= 9){
-                        axios
-                        .get (`http://localhost:8080/winter-items`)
-                        .then (response => {
-                            const itemsList = response.data;
-                            setItems(itemsList);
-                        })
-                        .catch (error => {
-                            console.log('Error getting items', error);
-                        });
-                    }
-                })
-                .catch (error => {
-                    console.log('Error getting destination', error);
-                });
+                    setWeatherLink(`https://openweathermap.org/city/${destinationId}`);
+                    setWeatherData(`It is currently ${temperature} °C in ${destination}. Click here for more details.`);
+                    
 
+                    if (`${temperature}` >= 20) {
+                        axios.get(`http://localhost:8080/summer-items`)
+                            .then(res => {
+                                const itemsList = res.data;
+
+                                setItems(itemsList);
+                            })
+                            .catch(err => {
+                                console.log('Error getting items', err);
+                            });
+                    } else if (`${temperature}` < 20 && `${temperature}` > 14) {
+                        axios.get(`http://localhost:8080/spring-items`)
+                            .then(res => {
+                                const itemsList = res.data;
+
+                                setItems(itemsList);
+                            })
+                            .catch(err => {
+                                console.log('Error getting items', err);
+                            });
+                    } else if (`${temperature}` <= 14 && `${temperature}` > 9) {
+                        axios.get(`http://localhost:8080/fall-items`)
+                            .then(res => {
+                                const itemsList = res.data;
+
+                                setItems(itemsList);
+                            })
+                            .catch(err => {
+                                console.log('Error getting items', err);
+                            });
+                    } else if (`${temperature}` <= 9) {
+                        axios.get(`http://localhost:8080/winter-items`)
+                            .then(res => {
+                                const itemsList = res.data;
+
+                                setItems(itemsList);
+                            })
+                            .catch(err => {
+                                console.log('Error getting items', err);
+                            });
+                   }
+                })
+                .catch (err => {
+                    console.log('Error getting destination', err);
+                });
             setLocationInput('');
-        }
-    }
+        };
+    };
+
     const handleSave = () => {
         const authToken = sessionStorage.getItem('authToken');
         const destination = sessionStorage.getItem('currentDestination');
         const editedList = items.map(item => ({...item, destination: destination}));
         
         if (authToken) {
-            axios
-                .get('http://localhost:8080/current', {
-                    headers: {
-                        Authorization: `Bearer ${authToken}`
-                    }
+            axios.get('http://localhost:8080/current', {
+                headers: {
+                    Authorization: `Bearer ${authToken}`
+                }
+            })
+            .then(res => {
+                const email= res.data.email;
+                
+                axios.post(`http://localhost:8080/savelist`, {
+                    email: email,
+                    lists: editedList
                 })
-                .then((res) => {
-                    const email= res.data.email;
-                    
-                    axios
-                        .post(`http://localhost:8080/savelist`, {
-                            email: email,
-                            lists: editedList
-                        })
-                        .then(res => {
-                            console.log(res)
-                        })
-                        .catch(err => {
-                            console.log(err);
-                        });     
+                .then(res => {
+                    console.log(res)
                 })
                 .catch(err => {
                     console.log(err);
-                });
+                });     
+            })
+            .catch(err => {
+                console.log(err);
+            });
             
             setSaveSuccess(`List for ${destination} successfully saved to My Lists!`);
         } else {
-            setSaveSuccess(`Please login to save this list for ${destination}!`)
-        }
-    }
+            setSaveSuccess(`Please login to save this list for ${destination}!`);
+        };
+    };
 
     return (
         <>
@@ -151,8 +149,7 @@ function SearchBar({locationInput, setLocationInput}) {
             <button className={`${weatherData ? 'search__button-save button' : 'button--hidden'}`} onClick={handleSave}> Save to My List </button>
             <p className='search__success'>{saveSuccess}</p>
         </>
-
     );
-}
+};
 
 export default SearchBar;
