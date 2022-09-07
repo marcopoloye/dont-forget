@@ -41,6 +41,6 @@ Note: [Back end server and database](https://github.com/marcopoloye/dont-forget-
 - Express
 - MySQL
 - Axios
-- OpenWeatherMap API
+- OpenWeatherMap API (Sign up [here](https://home.openweathermap.org/users/sign_up) and get your API key [here](https://home.openweathermap.org/api_keys)) 
 ---------------------------------
 Created by: Marco Ye
