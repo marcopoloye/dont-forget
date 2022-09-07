@@ -31,8 +31,8 @@ https://dont-forget-2022.herokuapp.com/
 
 ## Installation
 Note: [Back end server and database](https://github.com/marcopoloye/dont-forget-backend) must be online for proper functionality
-1. Install necessary node modules
-2. 'npm start' into terminal to run the app
+1. Install necessary node modules by typing 'npm i' into terminal
+2. Run the app by typing 'npm start' into terminal
 
 ## Tech stack
 - React
