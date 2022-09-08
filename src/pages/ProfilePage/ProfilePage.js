@@ -2,12 +2,13 @@ import './ProfilePage.scss'
 import { Component } from 'react';
 import axios from 'axios';
 import { Redirect } from 'react-router-dom';
-
+import DeleteAccountModal from '../../components/DeleteAccountModal/DeleteAccountModal';
 
 class ProfilePage extends Component {
     state = {
         failedAuth: false,
-        user: null
+        user: null,
+        modal: false
     };
     
     componentDidMount() {
@@ -49,7 +50,19 @@ class ProfilePage extends Component {
         sessionStorage.removeItem('currentEmail');
         sessionStorage.removeItem('currentDestination');
     };
+
+    openModal = () => {
+        this.setState({
+          modal: true
+        });
+      };
     
+    closeModal = () => {
+        this.setState({
+        modal: false
+        });
+    };
+
     handleDelete = () => {
         const parsedEmail = JSON.parse(sessionStorage.getItem('currentEmail'));
 
@@ -90,10 +103,10 @@ class ProfilePage extends Component {
                 <div className='profilepage'>
                     <h1 className='profilepage__heading'>My Profile</h1>
                     <p className='profilepage__text'>
-                        <b>First name: </b>{first_name}
+                        <b>First name: </b> {first_name}
                     </p>
                     <p className='profilepage__text'>
-                        <b>Last name: </b>{last_name}
+                        <b>Last name: </b> {last_name}
                     </p>
                     <p className='profilepage__text'>
                         <b>Email: </b> {email}
@@ -102,12 +115,13 @@ class ProfilePage extends Component {
                         <b>User since: </b> {created_at}
                     </p>
                     <button className='profilepage__button button' onClick={this.handleLogout}>
-                    Log out
+                        Log out
                     </button>
-                    <button className='profilepage__button button' id='delete-button' onClick={this.handleDelete}>
-                    Delete account
+                    <button className='profilepage__button button' id='delete-button' onClick={this.openModal}>
+                        Delete account
                     </button>
                 </div>
+                {this.state.modal && <DeleteAccountModal closeModal={this.closeModal} deleteAccount={this.handleDelete}/>}
             </div>
         );
     };

@@ -1,0 +1,82 @@
+@use '../../styles/partials/breakpoints' as *;
+
+.modal {
+    &__background {
+        width: 100vw;
+        height: 100vh;
+        background-color: rgba(0, 0, 0, 0.5);
+        position: fixed;
+        z-index: 5;
+        display: flex;
+        justify-content: center;
+        padding-top: 5rem;
+    }
+    &__container {
+        background-color: white;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        width: 75%;
+        height: 45%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    &__button {
+        &-container {
+            display: flex;
+            justify-content: flex-end;
+            background: rgb(240, 240, 240);
+        }
+        &-close {
+            border: none;
+            padding: .375rem .5rem;
+            color: black;
+            background: rgb(240, 240, 240);
+            cursor: pointer;
+            &:hover {
+                background: rgb(255, 59, 59);
+            }
+            &:active {
+                background: rgb(172, 38, 38) ;
+            }
+        }
+        &-footer {
+            width: 45%;
+            padding: .5rem .5rem; 
+        }
+    }
+    &__title {
+        margin: 3rem 0 0 1rem;
+    }
+    &__body {
+        margin: 0rem 0 0 1rem;
+    }
+    &__footer {
+        margin: 2rem 1rem 2rem;
+        display: flex;
+        justify-content: space-around;
+    }
+    @include tablet {
+        &__container {
+            height: 250px;
+            width: 500px;
+            justify-content: flex-start;
+        }
+        &__heading {
+            margin: 0;
+        }
+        &__button-footer {
+            width: 200px;
+        }
+        &__title {
+            margin-top: 2.5rem;
+            margin-left: 2rem;
+        }
+        &__body {
+            margin-top: 2.5rem;
+            margin-left: 2rem;
+        }
+        &__footer {
+            margin-top: 2.25rem;
+        }
+    }
+}
