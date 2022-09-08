@@ -4,10 +4,12 @@ import { v4 as uuid } from 'uuid';
 
 function ChecklistForm ({inputText, setInputText, items, setItems, weatherData}) {
 
+    // displays current input
     const handleChange = (e) => {
         setInputText(e.target.value);
     };
 
+    // adds current input field to list
     const handleSubmit = (e) => {
         e.preventDefault();
         const inputValue = e.target[0].value;
@@ -28,10 +30,20 @@ function ChecklistForm ({inputText, setInputText, items, setItems, weatherData})
     return (
         <>
             <form onSubmit={handleSubmit} className={`${weatherData ? 'checklist__form' : 'checklist__form--hidden'}`}>
-                <h3 className='checklist__form-text'>Here is a recommended packing list:</h3>
+                <h3 className='checklist__form-text'>
+                    Here is a recommended packing list:
+                </h3>
                 <div className='checklist__form-container'>
-                    <input className='checklist__form-input input' value={inputText} type='text' onChange={handleChange} placeholder='Add an item'/>
-                    <button className='checklist__form-button button' type='submit'>Add</button>
+                    <input 
+                        className='checklist__form-input input' 
+                        value={inputText} 
+                        type='text' 
+                        onChange={handleChange} 
+                        placeholder='Add an item'
+                    />
+                    <button className='checklist__form-button button' type='submit'>
+                        Add
+                    </button>
                 </div>
             </form>
         </>

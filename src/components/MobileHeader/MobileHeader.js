@@ -5,6 +5,7 @@ import { useHistory } from 'react-router-dom';
 function MobileHeader() {
     const history = useHistory();
     
+    // returns to homepage
     const handleClick = (e) => {
         history.push('/');
     };

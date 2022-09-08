@@ -25,6 +25,7 @@ class ListPage extends Component {
       });
     };
 
+    // checks if user is logged in
     axios.get('http://localhost:8080/current', {
       headers: {
         Authorization: `Bearer ${authToken}`
@@ -48,6 +49,7 @@ class ListPage extends Component {
     });
   };
   
+  // removes item from list
   deleteItemHandler = (e) => {
     const selectedItem = e.target.id;
     const filteredList = this.state.items.filter((item) => item.id !== selectedItem);
@@ -57,6 +59,7 @@ class ListPage extends Component {
     });
   };
 
+  // crosses out item from list
   checkItemHandler = (e) => {
     const selectedItem = e.target.id;
 
@@ -73,6 +76,7 @@ class ListPage extends Component {
     });
   };
 
+  // saves changes made to list
   handleSaveList = () => {
     const parsedEmail = JSON.parse(sessionStorage.getItem('currentEmail'));
     const mostCurrentList = this.state.items;
@@ -121,6 +125,7 @@ class ListPage extends Component {
     });
   };
 
+  // displays current input
   handleInputChange = (e) => {
     e.preventDefault();
 
@@ -129,6 +134,7 @@ class ListPage extends Component {
     });
   };
 
+  // adds current input field to list
   handleSubmit = (e) => {
     e.preventDefault();
     const mostCurrentList = this.state.items;

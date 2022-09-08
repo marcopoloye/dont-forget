@@ -2,10 +2,12 @@ import './ChecklistItems.scss';
 
 function ChecklistItems({setItems, items, item}) {
 
+    // removes item from list
     const deleteHandler = () => {
         setItems(items.filter((selectedItem) => selectedItem.id !== item.id));
     };
 
+    // crosses out item from list
     const completeHandler = () => {
         setItems(items.map(selectedItem => {
             if (selectedItem.id === item.id) {

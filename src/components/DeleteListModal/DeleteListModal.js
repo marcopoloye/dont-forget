@@ -14,7 +14,9 @@ function DeleteListModal({destination, closeModal, deleteList}) {
         <div className='modal__background'>
             <div className='modal__container'>
                 <div className='modal__button-container'>
-                    <button className='modal__button-close' onClick={handleCloseModal}>X</button>
+                    <button className='modal__button-close' onClick={handleCloseModal}>
+                        X
+                    </button>
                 </div>
                 <h3 className='modal__title'>
                     Delete list for {destination}
@@ -23,8 +25,12 @@ function DeleteListModal({destination, closeModal, deleteList}) {
                     Please confirm that you would like to delete this list.
                 </p>
                 <div className='modal__footer'>
-                    <button className='modal__button-footer button' onClick={handleCloseModal}>Cancel</button>
-                    <button className='modal__button-footer button' onClick={handleDeleteList} id='delete-button'>Delete</button>
+                    <button className='modal__button-footer button' onClick={handleCloseModal}>
+                        Cancel
+                    </button>
+                    <button className='modal__button-footer button' onClick={handleDeleteList} id='delete-button'>
+                        Delete
+                    </button>
                 </div>
             </div>
         </div>

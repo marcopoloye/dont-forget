@@ -23,8 +23,12 @@ function DeleteAccountModal({deleteAccount, closeModal}) {
                     Please confirm that you would like to delete your account.
                 </p>
                 <div className='modal__footer'>
-                    <button className='modal__button-footer button' onClick={handleCloseModal}>Cancel</button>
-                    <button className='modal__button-footer button' onClick={handleDeleteList} id='delete-button'>Delete</button>
+                    <button className='modal__button-footer button' onClick={handleCloseModal}>
+                        Cancel
+                    </button>
+                    <button className='modal__button-footer button' onClick={handleDeleteList} id='delete-button'>
+                        Delete
+                    </button>
                 </div>
             </div>
         </div>

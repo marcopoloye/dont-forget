@@ -9,22 +9,21 @@ function SignUpPage () {
     const [passwordInput, setPasswordInput] = useState('');
     const [success, setSuccess] = useState('');
 
+    // displays current input
     const handleFirstNameInput = (e) => {
         setFirstNameInput(e.target.value);
     };
-
     const handleLastNameInput = (e) => {
         setLastNameInput(e.target.value);
     };
-
     const handleEmailInput = (e) => {
         setEmailInput(e.target.value);
     };
-
     const handlePasswordInput = (e) => {
         setPasswordInput(e.target.value);
     };
 
+    // submits current input fields to sign up and checks for empty fields
     const handleSubmit = (e) => {
         e.preventDefault();
 
@@ -62,9 +61,13 @@ function SignUpPage () {
 
     return (
         <div className="signup">
-            <h1 className="signup__heading" htmlFor='signup-form'>Sign up for an account</h1>
+            <h1 className="signup__heading" htmlFor='signup-form'>
+                Sign up for an account
+            </h1>
             <form className="signup__form" id='signup-form' onSubmit={handleSubmit}>
-                <label className="signup__label" htmlFor='signup-firstname'>First Name:</label>
+                <label className="signup__label" htmlFor='signup-firstname'>
+                    First Name:
+                </label>
                 <input 
                     type='text' 
                     id='signup-firstname' 
@@ -73,8 +76,13 @@ function SignUpPage () {
                     className='signup__input input'
                     placeholder='Enter your first name'
                 />
-                <label className='signup__missing--hidden' id='error'>Please enter a first name</label>
-                <label className="signup__label" htmlFor='signup-lastname'>Last Name:</label>
+                <label className='signup__missing--hidden' id='error'>
+                    Please enter a first name
+                </label>
+
+                <label className="signup__label" htmlFor='signup-lastname'>
+                    Last Name:
+                </label>
                 <input 
                     type='text' 
                     id='signup-lastname' 
@@ -83,8 +91,13 @@ function SignUpPage () {
                     className='signup__input input'
                     placeholder='Enter your last name'
                 />
-                <label className='signup__missing--hidden' id='error'>Please enter a last name</label>
-                <label className="signup__label" htmlFor='signup-email'>Email:</label>
+                <label className='signup__missing--hidden' id='error'>
+                    Please enter a last name
+                </label>
+
+                <label className="signup__label" htmlFor='signup-email'>
+                    Email:
+                </label>
                 <input 
                     type='text' 
                     id='signup-email' 
@@ -93,8 +106,13 @@ function SignUpPage () {
                     className='signup__input input'
                     placeholder='Enter your email'
                 />
-                <label className='signup__missing--hidden' id='error'>Please enter an email</label>
-                <label className="signup__label" htmlFor='signup-password'>Password:</label>
+                <label className='signup__missing--hidden' id='error'>
+                    Please enter an email
+                </label>
+
+                <label className="signup__label" htmlFor='signup-password'>
+                    Password:
+                </label>
                 <input 
                     type='password' 
                     id='signup-password' 
@@ -103,9 +121,16 @@ function SignUpPage () {
                     className='signup__input input'
                     placeholder='Enter your password'
                 />
-                <label className='signup__missing--hidden' id='error'>Please enter a password</label>
-                <button className="signup__button button">Sign up</button>
-                <p className='signup__success'>{success}</p>
+                <label className='signup__missing--hidden' id='error'>
+                    Please enter a password
+                </label>
+
+                <button className="signup__button button">
+                    Sign up
+                </button>
+                <p className='signup__success'>
+                    {success}
+                </p>
             </form>
         </div>
     );

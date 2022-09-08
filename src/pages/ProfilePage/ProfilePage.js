@@ -20,6 +20,7 @@ class ProfilePage extends Component {
             });
         };
     
+        // checks if user is logged in
         axios.get('http://localhost:8080/current', {
             headers: {
                 Authorization: `Bearer ${authToken}`
@@ -63,6 +64,7 @@ class ProfilePage extends Component {
         });
     };
 
+    // deletes user account
     handleDelete = () => {
         const parsedEmail = JSON.parse(sessionStorage.getItem('currentEmail'));
 
@@ -101,7 +103,9 @@ class ProfilePage extends Component {
         return (
             <div className='profilepage__container'>
                 <div className='profilepage'>
-                    <h1 className='profilepage__heading'>My Profile</h1>
+                    <h1 className='profilepage__heading'>
+                        My Profile
+                    </h1>
                     <p className='profilepage__text'>
                         <b>First name: </b> {first_name}
                     </p>

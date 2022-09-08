@@ -9,14 +9,15 @@ function LoginPage() {
     const [success, setSuccess] = useState(false);
     const [invalidLogin, setInvalidLogin] = useState('');
 
+    // displays current input
     const handleEmailInput = (e) => {
         setEmailInput(e.target.value);
     };
-
     const handlePasswordInput = (e) => {
         setPasswordInput(e.target.value);
     };
 
+    // submits current input fields to login
     const handleLogin = (e) => {
         e.preventDefault();
 
@@ -66,7 +67,9 @@ function LoginPage() {
 
     return (
       <div className='login'>
-        <h1 htmlFor='login-form' className='login__heading'>Login</h1>
+        <h1 htmlFor='login-form' className='login__heading'>
+            Login
+        </h1>
         <form className="login__form" id='login-form' onSubmit={handleLogin}>
             <label htmlFor='login-email' className='login__label'>
                 Email:
@@ -79,7 +82,10 @@ function LoginPage() {
                 onChange={handleEmailInput}
                 placeholder='Enter your email'
             />
-            <label className='login__missing--hidden' id='error'>Please enter an email</label>
+            <label className='login__missing--hidden' id='error'>
+                Please enter an email
+            </label>
+
             <label htmlFor='login-password' className='login__label'>
                 Password:
             </label>
@@ -91,11 +97,18 @@ function LoginPage() {
                 onChange={handlePasswordInput}
                 placeholder='Enter your password'
             />
-            <label className='login__missing--hidden' id='error'>Please enter a password</label>
-            <button className='login__button button'>Login</button>
+            <label className='login__missing--hidden' id='error'>
+                Please enter a password
+            </label>
+
+            <button className='login__button button'>
+                Login
+            </button>
             {success ? <Redirect to='/'/> : ''}
         </form>
-        <label className='login__invalid'>{invalidLogin}</label>
+        <label className='login__invalid'>
+            {invalidLogin}
+        </label>
         <Link to='/signup' className='login__link'>
             Don't have an account? Click here to sign up
         </Link>

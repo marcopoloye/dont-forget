@@ -13,15 +13,18 @@ function SearchBar({locationInput, setLocationInput}) {
 
     const API_KEY = process.env.REACT_APP_WEATHER_API_KEY;
 
+    // displays current input
     const handleSearchInput = (e) => {
         setLocationInput(e.target.value);
     };
 
+    // adds current input field to list
     const handleSearchSubmit = (e) => {
         e.preventDefault();
 
         const searchValue = e.target[0].value;
 
+        // checks for empty input field
         if (searchValue) {
             axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${searchValue}&appid=${API_KEY}`)
                 .then(res => {
@@ -36,7 +39,6 @@ function SearchBar({locationInput, setLocationInput}) {
                     setWeatherLink(`https://openweathermap.org/city/${destinationId}`);
                     setWeatherData(`It is currently ${temperature} °C in ${destination}. Click here for more details.`);
                     
-
                     if (`${temperature}` >= 20) {
                         axios.get(`http://localhost:8080/summer-items`)
                             .then(res => {
@@ -86,11 +88,13 @@ function SearchBar({locationInput, setLocationInput}) {
         };
     };
 
+    // saves currently displayed list
     const handleSave = () => {
         const authToken = sessionStorage.getItem('authToken');
         const destination = sessionStorage.getItem('currentDestination');
         const editedList = items.map(item => ({...item, destination: destination}));
         
+        // checks if user is logged in
         if (authToken) {
             axios.get('http://localhost:8080/current', {
                 headers: {
@@ -114,7 +118,6 @@ function SearchBar({locationInput, setLocationInput}) {
             .catch(err => {
                 console.log(err);
             });
-            
             setSaveSuccess(`List for ${destination} successfully saved to My Lists!`);
         } else {
             setSaveSuccess(`Please login to save this list for ${destination}!`);
@@ -125,11 +128,21 @@ function SearchBar({locationInput, setLocationInput}) {
         <>
             <div className="search__container">
                 <a href={weatherLink} target='_blank' className='search__weather-link'>
-                    <h3 className='search__weather'>{weatherData}</h3>
+                    <h3 className='search__weather'>
+                        {weatherData}
+                    </h3>
                 </a>
                 <form className='search__form' onSubmit={handleSearchSubmit}>
-                    <input className="search__input input" type="text" placeholder='Enter your destination' value={locationInput} onChange={handleSearchInput}/>
-                    <button className="search__button button" type="submit">Search</button>
+                    <input 
+                        className="search__input input" 
+                        type="text" 
+                        placeholder='Enter your destination' 
+                        value={locationInput} 
+                        onChange={handleSearchInput}
+                    />
+                    <button className="search__button button" type="submit">
+                        Search
+                    </button>
                 </form>
             </div>
                
@@ -140,14 +153,17 @@ function SearchBar({locationInput, setLocationInput}) {
                 setItems={setItems} 
                 weatherData={weatherData}
             />
-            
             <ChecklistList 
                 items={items} 
                 setItems={setItems}
             />
 
-            <button className={`${weatherData ? 'search__button-save button' : 'button--hidden'}`} onClick={handleSave}> Save to My List </button>
-            <p className='search__success'>{saveSuccess}</p>
+            <button className={`${weatherData ? 'search__button-save button' : 'button--hidden'}`} onClick={handleSave}>
+                Save to My List
+            </button>
+            <p className='search__success'>
+                {saveSuccess}
+            </p>
         </>
     );
 };
