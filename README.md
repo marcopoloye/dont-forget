@@ -2,6 +2,8 @@
 
 Don't Forget is a checklist style app designed to help forgetful travelers remember what to pack. Simply search for a destination and the app will suggest a list of items depending on the weather at your destination!
 
+https://dont-forget-2022.herokuapp.com/
+
 ## Features
 - Simple and intuitive UI
 - Customizable checklists
@@ -26,12 +28,11 @@ Don't Forget is a checklist style app designed to help forgetful travelers remem
 ## Upcoming features
 - Dark mode
 - Saving more than one custom list to My Lists
-- Public deployment
 
 ## Installation
 Note: [Back end server and database](https://github.com/marcopoloye/dont-forget-backend) must be online for proper functionality
-1. Install necessary node modules
-2. 'npm start' into terminal to run the app
+1. Install necessary node modules by typing 'npm i' into terminal
+2. Run the app by typing 'npm start' into terminal
 
 ## Tech stack
 - React
@@ -40,6 +41,6 @@ Note: [Back end server and database](https://github.com/marcopoloye/dont-forget-
 - Express
 - MySQL
 - Axios
-- OpenWeatherMap API
+- OpenWeatherMap API (Sign up [here](https://home.openweathermap.org/users/sign_up) and get your API key [here](https://home.openweathermap.org/api_keys)) 
 ---------------------------------
 Created by: Marco Ye
