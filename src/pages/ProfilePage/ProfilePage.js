@@ -50,6 +50,24 @@ class ProfilePage extends Component {
         sessionStorage.removeItem('currentDestination');
     };
     
+    handleDelete = () => {
+        const parsedEmail = JSON.parse(sessionStorage.getItem('currentEmail'));
+
+        axios.delete('http://localhost:8080/deleteuser', {
+            data: {
+                email: parsedEmail
+            }
+        })
+        .then(res => {
+            console.log(res);
+        })
+        .catch(err => {
+          console.log(err);
+        });
+
+        this.handleLogout();
+    }
+
     render() {
         if (this.state.failedAuth) {
             return (
@@ -85,6 +103,9 @@ class ProfilePage extends Component {
                     </p>
                     <button className='profilepage__button button' onClick={this.handleLogout}>
                     Log out
+                    </button>
+                    <button className='profilepage__button button' id='delete-button' onClick={this.handleDelete}>
+                    Delete account
                     </button>
                 </div>
             </div>
