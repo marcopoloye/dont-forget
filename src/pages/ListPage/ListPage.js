@@ -166,7 +166,9 @@ class ListPage extends Component {
 
     return (
       <div className='listpage'>
-        <h1 className='listpage__heading'>My Lists</h1>
+        <h1 className='listpage__heading'>
+          My Lists
+        </h1>
         <h3 className='listpage__destination'>
           Packing list for {this.state.items[0].destination}:
         </h3>
@@ -180,7 +182,9 @@ class ListPage extends Component {
                 value={this.state.currentInput} 
                 placeholder='Add an item'
               />
-              <button className='listpage__form-button button' type='submit'>Add</button>
+              <button className='listpage__form-button button' type='submit'>
+                Add
+              </button>
             </div>
           </form>
         </div>
@@ -188,18 +192,25 @@ class ListPage extends Component {
           {this.state.items.map(items => (
             <li key={items.id} className={`${items.packed ? 'listpage__items--strike' : 'listpage__items'}`}>
               {items.itemName}
-              <div className='listpage__items-button-container' >
+              <div className='listpage__items-button-container'>
                 <div className='listpage__items-button--green' id={items.id} onClick={this.checkItemHandler}/>
                 <div className='listpage__items-button--red' id={items.id} onClick={this.deleteItemHandler}/>
               </div>
             </li>
-          ))}
-        <div className='listpage__buttons-container'>
-          <button className='listpage__buttons button' onClick={this.handleSaveList}>Save Changes</button>
-          <button className='listpage__buttons button' onClick={this.openModal} id='delete-button'>Delete List</button>
-        </div>
+            ))
+          }
+          <div className='listpage__buttons-container'>
+            <button className='listpage__buttons button' onClick={this.handleSaveList}>
+              Save Changes
+            </button>
+            <button className='listpage__buttons button' onClick={this.openModal} id='delete-button'>
+              Delete List
+            </button>
+          </div>
         </ul>
-        <p className='listpage__success'>{this.state.saveSuccess}</p>
+        <p className='listpage__success'>
+          {this.state.saveSuccess}
+        </p>
         {this.state.modal && <DeleteListModal destination={this.state.items[0].destination} closeModal={this.closeModal} deleteList={this.handleDeleteList}/>}
       </div>
     );
