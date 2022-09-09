@@ -10,6 +10,7 @@ function SearchBar({locationInput, setLocationInput}) {
     const [weatherData, setWeatherData] = useState('');
     const [saveSuccess, setSaveSuccess] = useState('');
     const [weatherLink, setWeatherLink] = useState('');
+    const [searchError, setSearchError] = useState('');
 
     const API_KEY = process.env.REACT_APP_WEATHER_API_KEY;
 
@@ -38,7 +39,8 @@ function SearchBar({locationInput, setLocationInput}) {
 
                     setWeatherLink(`https://openweathermap.org/city/${destinationId}`);
                     setWeatherData(`It is currently ${temperature} °C in ${destination}. Click here for more details.`);
-                    
+                    setSearchError('')
+
                     if (`${temperature}` >= 20) {
                         axios.get(`http://localhost:8080/summer-items`)
                             .then(res => {
@@ -85,7 +87,10 @@ function SearchBar({locationInput, setLocationInput}) {
                     console.log('Error getting destination', err);
                 });
             setLocationInput('');
-        };
+
+        } else {
+            setSearchError('Please enter a destination!')
+        }
     };
 
     // saves currently displayed list
@@ -145,6 +150,9 @@ function SearchBar({locationInput, setLocationInput}) {
                     </button>
                 </form>
             </div>
+            <p className='search__error'>
+                {searchError}
+            </p>
                
             <ChecklistForm 
                 inputText={inputText} 
