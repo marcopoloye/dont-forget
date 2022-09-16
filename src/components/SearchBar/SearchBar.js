@@ -3,6 +3,7 @@ import axios from 'axios';
 import React, { useState} from 'react';
 import ChecklistForm from '../ChecklistForm/ChecklistForm';
 import ChecklistList from '../ChecklistList/ChecklistList';
+import '../../config/index';
 
 function SearchBar({locationInput, setLocationInput}) {
     const [inputText, setInputText] = useState('');
@@ -42,7 +43,7 @@ function SearchBar({locationInput, setLocationInput}) {
                     setSearchError('')
 
                     if (`${temperature}` >= 20) {
-                        axios.get(`http://localhost:8080/summer-items`)
+                        axios.get(`${API_URL}/summer-items`)
                             .then(res => {
                                 const itemsList = res.data;
 
@@ -52,7 +53,7 @@ function SearchBar({locationInput, setLocationInput}) {
                                 console.log('Error getting items', err);
                             });
                     } else if (`${temperature}` < 20 && `${temperature}` > 14) {
-                        axios.get(`http://localhost:8080/spring-items`)
+                        axios.get(`${API_URL}/spring-items`)
                             .then(res => {
                                 const itemsList = res.data;
 
@@ -62,7 +63,7 @@ function SearchBar({locationInput, setLocationInput}) {
                                 console.log('Error getting items', err);
                             });
                     } else if (`${temperature}` <= 14 && `${temperature}` > 9) {
-                        axios.get(`http://localhost:8080/fall-items`)
+                        axios.get(`${API_URL}/fall-items`)
                             .then(res => {
                                 const itemsList = res.data;
 
@@ -72,7 +73,7 @@ function SearchBar({locationInput, setLocationInput}) {
                                 console.log('Error getting items', err);
                             });
                     } else if (`${temperature}` <= 9) {
-                        axios.get(`http://localhost:8080/winter-items`)
+                        axios.get(`${API_URL}/winter-items`)
                             .then(res => {
                                 const itemsList = res.data;
 
@@ -101,7 +102,7 @@ function SearchBar({locationInput, setLocationInput}) {
         
         // checks if user is logged in
         if (authToken) {
-            axios.get('http://localhost:8080/current', {
+            axios.get(`${API_URL}/current`, {
                 headers: {
                     Authorization: `Bearer ${authToken}`
                 }
@@ -109,7 +110,7 @@ function SearchBar({locationInput, setLocationInput}) {
             .then(res => {
                 const email= res.data.email;
                 
-                axios.post(`http://localhost:8080/savelist`, {
+                axios.post(`${API_URL}0/savelist`, {
                     email: email,
                     lists: editedList
                 })
