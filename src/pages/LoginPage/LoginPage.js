@@ -2,6 +2,7 @@ import './LoginPage.scss';
 import React, { useState} from 'react';
 import axios from 'axios';
 import { Link, Redirect } from 'react-router-dom';
+import { API_URL } from '../../config/index';
 
 function LoginPage() {
     const [emailInput, setEmailInput] = useState('');
@@ -33,7 +34,7 @@ function LoginPage() {
         };
 
         if (e.target[0].value && e.target[1].value) {
-            axios.post(`http://localhost:8080/login`, {
+            axios.post(`${API_URL}/login`, {
                 email: e.target[0].value,
                 password: e.target[1].value
             })
@@ -42,7 +43,7 @@ function LoginPage() {
                 const token = sessionStorage.getItem('authToken');
                 setSuccess(true);
                 
-                axios.get('http://localhost:8080/current', {
+                axios.get(`${API_URL}/current`, {
                     headers: {
                         Authorization: `Bearer ${token}`
                     }

@@ -3,6 +3,7 @@ import { Component } from 'react';
 import axios from 'axios';
 import { Redirect } from 'react-router-dom';
 import DeleteAccountModal from '../../components/DeleteAccountModal/DeleteAccountModal';
+import { API_URL } from '../../config/index';
 
 class ProfilePage extends Component {
     state = {
@@ -21,7 +22,7 @@ class ProfilePage extends Component {
         };
     
         // checks if user is logged in
-        axios.get('http://localhost:8080/current', {
+        axios.get(`${API_URL}/current`, {
             headers: {
                 Authorization: `Bearer ${authToken}`
             }
@@ -68,7 +69,7 @@ class ProfilePage extends Component {
     handleDelete = () => {
         const parsedEmail = JSON.parse(sessionStorage.getItem('currentEmail'));
 
-        axios.delete('http://localhost:8080/deleteuser', {
+        axios.delete(`${API_URL}/deleteuser`, {
             data: {
                 email: parsedEmail
             }

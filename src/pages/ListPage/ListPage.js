@@ -4,6 +4,7 @@ import { Redirect } from 'react-router-dom';
 import { v4 as uuid } from 'uuid';
 import axios from 'axios';
 import DeleteListModal from '../../components/DeleteListModal/DeleteListModal';
+import { API_URL } from '../../config/index';
 
 class ListPage extends Component {
   state = {
@@ -26,7 +27,7 @@ class ListPage extends Component {
     };
 
     // checks if user is logged in
-    axios.get('http://localhost:8080/current', {
+    axios.get(`${API_URL}/current`, {
       headers: {
         Authorization: `Bearer ${authToken}`
       }
@@ -81,7 +82,7 @@ class ListPage extends Component {
     const parsedEmail = JSON.parse(sessionStorage.getItem('currentEmail'));
     const mostCurrentList = this.state.items;
 
-    axios.post(`http://localhost:8080/savelist`, {
+    axios.post(`${API_URL}/savelist`, {
       email: parsedEmail,
       lists: mostCurrentList
     })
@@ -100,7 +101,7 @@ class ListPage extends Component {
   handleDeleteList = () => {
     const parsedEmail = JSON.parse(sessionStorage.getItem('currentEmail'));
 
-    axios.post(`http://localhost:8080/savelist`, {
+    axios.post(`${API_URL}/savelist`, {
       email: parsedEmail,
       lists: null
     })

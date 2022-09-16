@@ -1,6 +1,7 @@
 import './SignUpPage.scss';
 import axios from "axios";
 import { useState } from "react";
+import { API_URL } from '../../config/index';
 
 function SignUpPage () {
     const [firstNameInput, setFirstNameInput] = useState('');
@@ -39,7 +40,7 @@ function SignUpPage () {
         };
 
         if (e.target[0].value && e.target[1].value && e.target[2].value && e.target[3].value) {
-            axios.post(`http://localhost:8080/register`, {
+            axios.post(`${API_URL}/register`, {
                 firstName: e.target[0].value,
                 lastName: e.target[1].value,
                 email: e.target[2].value,
