@@ -3,7 +3,7 @@ import axios from 'axios';
 import React, { useState} from 'react';
 import ChecklistForm from '../ChecklistForm/ChecklistForm';
 import ChecklistList from '../ChecklistList/ChecklistList';
-import { API_URL } from '../../config';'../../config/index';
+import { API_URL } from '../../config/index';
 
 function SearchBar({locationInput, setLocationInput}) {
     const [inputText, setInputText] = useState('');
