@@ -15,9 +15,9 @@ function AboutPage() {
                     Simply search for a destination and the app will suggest a list of items depending on the weather at your destination!
                 </p>
                 <p className='aboutpage__text'>
-                    Created by: 
+                    Created by:
                         <Link to='/contact' className='aboutpage__link'>
-                            Marco Ye
+                             Marco Ye
                         </Link>
                 </p>
             </div>
