@@ -87,11 +87,12 @@ function SearchBar({locationInput, setLocationInput}) {
                 })
                 .catch (err => {
                     console.log('Error getting destination', err);
+                    setSearchError('Please enter a destination!');
                 });
             setLocationInput('');
 
         } else {
-            setSearchError('Please enter a destination!')
+            setSearchError('Please enter a destination!');
         }
     };
 
@@ -143,7 +144,7 @@ function SearchBar({locationInput, setLocationInput}) {
                     <input 
                         className="search__input input" 
                         type="text" 
-                        placeholder='Enter your destination' 
+                        placeholder='Enter your destination (e.g., Vancouver, CA or Vancouver, US)' 
                         value={locationInput} 
                         onChange={handleSearchInput}
                     />
