@@ -2,6 +2,7 @@ import './SignUpPage.scss';
 import axios from "axios";
 import { useState } from "react";
 import { API_URL } from '../../config/index';
+import { Link } from 'react-router-dom';
 
 function SignUpPage () {
     const [firstNameInput, setFirstNameInput] = useState('');
@@ -54,7 +55,7 @@ function SignUpPage () {
             setLastNameInput('');
             setEmailInput('');
             setPasswordInput('');
-            setSuccess('Sign up successful!');
+            setSuccess('Sign up successful! Click here to return to login');
         } else {
             console.log('empty form inputs');
         };
@@ -130,7 +131,7 @@ function SignUpPage () {
                     Sign up
                 </button>
                 <p className='signup__success'>
-                    {success}
+                    <Link to='/login' className='signup__success'>{success}</Link>
                 </p>
             </form>
         </div>

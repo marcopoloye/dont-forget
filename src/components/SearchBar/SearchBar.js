@@ -4,6 +4,7 @@ import React, { useState} from 'react';
 import ChecklistForm from '../ChecklistForm/ChecklistForm';
 import ChecklistList from '../ChecklistList/ChecklistList';
 import { API_URL } from '../../config/index';
+import { Link } from 'react-router-dom';
 
 function SearchBar({locationInput, setLocationInput}) {
     const [inputText, setInputText] = useState('');
@@ -126,7 +127,7 @@ function SearchBar({locationInput, setLocationInput}) {
             });
             setSaveSuccess(`List for ${destination} successfully saved to My Lists!`);
         } else {
-            setSaveSuccess(`Please login to save this list for ${destination}!`);
+            setSaveSuccess(`Click here to login and save this list for ${destination}!`);
         };
     };
 
@@ -171,7 +172,7 @@ function SearchBar({locationInput, setLocationInput}) {
                 Save to My List
             </button>
             <p className='search__success'>
-                {saveSuccess}
+                <Link to='/login' className='search__success'>{saveSuccess}</Link>
             </p>
         </>
     );
