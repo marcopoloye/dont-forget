@@ -87,7 +87,7 @@ function SearchBar({locationInput, setLocationInput}) {
                 })
                 .catch (err => {
                     console.log('Error getting destination', err);
-                    setSearchError('Please enter a destination!');
+                    setSearchError('Please enter a valid destination!');
                 });
             setLocationInput('');
 
