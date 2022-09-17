@@ -111,7 +111,7 @@ function SearchBar({locationInput, setLocationInput}) {
             .then(res => {
                 const email= res.data.email;
                 
-                axios.post(`${API_URL}0/savelist`, {
+                axios.post(`${API_URL}/savelist`, {
                     email: email,
                     lists: editedList
                 })
