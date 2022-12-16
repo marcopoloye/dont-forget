@@ -135,7 +135,7 @@ function SearchBar({locationInput, setLocationInput}) {
     return (
         <>
             <div className="search__container">
-                <a href={weatherLink} target='_blank' className='search__weather-link'>
+                <a href={weatherLink} target='_blank' className='search__weather-link' rel='noreferrer'>
                     <h3 className='search__weather'>
                         {weatherData}
                     </h3>

@@ -12,7 +12,7 @@ function MobileHeader() {
 
     return (
         <header className='mobileheader'>
-            <img src={logo} className='mobileheader__logo' onClick={handleClick}/>
+            <img src={logo} className='mobileheader__logo' onClick={handleClick} alt='logo'/>
         </header>
     );
 };

@@ -9,7 +9,7 @@ function HomePage() {
     return (
         <div className='homepage'>
             <div className='homepage__logo-container'>
-                <img src={logo} className='homepage__logo'/>
+                <img src={logo} className='homepage__logo' alt='logo'/>
             </div>
             <SearchBar 
                 locationInput={locationInput} 
