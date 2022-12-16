@@ -36,7 +36,7 @@ Note: [Back end server and database](https://github.com/marcopoloye/dont-forget-
 
 ## Tech stack
 - React
-- SCSS
+- Sass
 - Node
 - Express
 - MySQL
