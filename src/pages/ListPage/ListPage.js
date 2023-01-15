@@ -4,7 +4,6 @@ import { Redirect } from 'react-router-dom';
 import { v4 as uuid } from 'uuid';
 import axios from 'axios';
 import DeleteListModal from '../../components/DeleteListModal/DeleteListModal';
-import { API_URL } from '../../config/index';
 
 class ListPage extends Component {
   state = {
@@ -27,7 +26,7 @@ class ListPage extends Component {
     };
 
     // checks if user is logged in
-    axios.get(`${API_URL}/current`, {
+    axios.get(`https://dontforgetapi.netlify.app/current`, {
       headers: {
         Authorization: `Bearer ${authToken}`
       }
@@ -82,7 +81,7 @@ class ListPage extends Component {
     const parsedEmail = JSON.parse(sessionStorage.getItem('currentEmail'));
     const mostCurrentList = this.state.items;
 
-    axios.post(`${API_URL}/savelist`, {
+    axios.post(`https://dontforgetapi.netlify.app/savelist`, {
       email: parsedEmail,
       lists: mostCurrentList
     })
@@ -101,7 +100,7 @@ class ListPage extends Component {
   handleDeleteList = () => {
     const parsedEmail = JSON.parse(sessionStorage.getItem('currentEmail'));
 
-    axios.post(`${API_URL}/savelist`, {
+    axios.post(`https://dontforgetapi.netlify.app/savelist`, {
       email: parsedEmail,
       lists: null
     })

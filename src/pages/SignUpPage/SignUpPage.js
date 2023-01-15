@@ -1,7 +1,6 @@
 import './SignUpPage.scss';
 import axios from "axios";
 import { useState } from "react";
-import { API_URL } from '../../config/index';
 import { Link } from 'react-router-dom';
 
 function SignUpPage () {
@@ -41,7 +40,7 @@ function SignUpPage () {
         };
 
         if (e.target[0].value && e.target[1].value && e.target[2].value && e.target[3].value) {
-            axios.post(`${API_URL}/register`, {
+            axios.post(`https://dontforgetapi.netlify.app/register`, {
                 firstName: e.target[0].value,
                 lastName: e.target[1].value,
                 email: e.target[2].value,

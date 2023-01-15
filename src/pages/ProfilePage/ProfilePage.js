@@ -3,7 +3,6 @@ import { Component } from 'react';
 import axios from 'axios';
 import { Redirect } from 'react-router-dom';
 import DeleteAccountModal from '../../components/DeleteAccountModal/DeleteAccountModal';
-import { API_URL } from '../../config/index';
 
 class ProfilePage extends Component {
     state = {
@@ -22,7 +21,7 @@ class ProfilePage extends Component {
         };
     
         // checks if user is logged in
-        axios.get(`${API_URL}/current`, {
+        axios.get(`https://dontforgetapi.netlify.app/current`, {
             headers: {
                 Authorization: `Bearer ${authToken}`
             }
@@ -69,7 +68,7 @@ class ProfilePage extends Component {
     handleDelete = () => {
         const parsedEmail = JSON.parse(sessionStorage.getItem('currentEmail'));
 
-        axios.delete(`${API_URL}/deleteuser`, {
+        axios.delete(`https://dontforgetapi.netlify.app/deleteuser`, {
             data: {
                 email: parsedEmail
             }

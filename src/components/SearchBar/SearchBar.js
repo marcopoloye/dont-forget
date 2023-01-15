@@ -3,7 +3,6 @@ import axios from 'axios';
 import React, { useState} from 'react';
 import ChecklistForm from '../ChecklistForm/ChecklistForm';
 import ChecklistList from '../ChecklistList/ChecklistList';
-import { API_URL } from '../../config/index';
 import { Link } from 'react-router-dom';
 
 function SearchBar({locationInput, setLocationInput}) {
