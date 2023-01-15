@@ -103,7 +103,7 @@ function SearchBar({locationInput, setLocationInput}) {
         
         // checks if user is logged in
         if (authToken) {
-            axios.get(`${API_URL}/current`, {
+            axios.get(`https://dontforgetapi.netlify.app/current`, {
                 headers: {
                     Authorization: `Bearer ${authToken}`
                 }
@@ -111,7 +111,7 @@ function SearchBar({locationInput, setLocationInput}) {
             .then(res => {
                 const email= res.data.email;
                 
-                axios.post(`${API_URL}/savelist`, {
+                axios.post(`https://dontforgetapi.netlify.app/savelist`, {
                     email: email,
                     lists: editedList
                 })
