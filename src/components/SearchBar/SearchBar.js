@@ -44,7 +44,7 @@ function SearchBar({locationInput, setLocationInput}) {
                     setSearchError('')
 
                     if (`${temperature}` >= 20) {
-                        axios.get(`${API_URL}/summer-items`)
+                        axios.get(`${API_URL}/summeritems`)
                             .then(res => {
                                 const itemsList = res.data;
 
@@ -54,7 +54,7 @@ function SearchBar({locationInput, setLocationInput}) {
                                 console.log('Error getting items', err);
                             });
                     } else if (`${temperature}` < 20 && `${temperature}` > 14) {
-                        axios.get(`${API_URL}/spring-items`)
+                        axios.get(`${API_URL}/springitems`)
                             .then(res => {
                                 const itemsList = res.data;
 
@@ -64,7 +64,7 @@ function SearchBar({locationInput, setLocationInput}) {
                                 console.log('Error getting items', err);
                             });
                     } else if (`${temperature}` <= 14 && `${temperature}` > 9) {
-                        axios.get(`${API_URL}/fall-items`)
+                        axios.get(`${API_URL}/fallitems`)
                             .then(res => {
                                 const itemsList = res.data;
 
@@ -74,7 +74,7 @@ function SearchBar({locationInput, setLocationInput}) {
                                 console.log('Error getting items', err);
                             });
                     } else if (`${temperature}` <= 9) {
-                        axios.get(`${API_URL}/winter-items`)
+                        axios.get(`${API_URL}/winteritems`)
                             .then(res => {
                                 const itemsList = res.data;
 
