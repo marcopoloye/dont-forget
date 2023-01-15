@@ -44,7 +44,7 @@ function SearchBar({locationInput, setLocationInput}) {
                     setSearchError('')
 
                     if (`${temperature}` >= 20) {
-                        axios.get(`${API_URL}/summeritems`)
+                        axios.get(`https://dontforgetapi.netlify.app/summeritems`)
                             .then(res => {
                                 const itemsList = res.data;
 
@@ -54,7 +54,7 @@ function SearchBar({locationInput, setLocationInput}) {
                                 console.log('Error getting items', err);
                             });
                     } else if (`${temperature}` < 20 && `${temperature}` > 14) {
-                        axios.get(`${API_URL}/springitems`)
+                        axios.get(`https://dontforgetapi.netlify.app/springitems`)
                             .then(res => {
                                 const itemsList = res.data;
 
@@ -64,7 +64,7 @@ function SearchBar({locationInput, setLocationInput}) {
                                 console.log('Error getting items', err);
                             });
                     } else if (`${temperature}` <= 14 && `${temperature}` > 9) {
-                        axios.get(`${API_URL}/fallitems`)
+                        axios.get(`https://dontforgetapi.netlify.app/fallitems`)
                             .then(res => {
                                 const itemsList = res.data;
 
@@ -74,7 +74,7 @@ function SearchBar({locationInput, setLocationInput}) {
                                 console.log('Error getting items', err);
                             });
                     } else if (`${temperature}` <= 9) {
-                        axios.get(`${API_URL}/winteritems`)
+                        axios.get(`https://dontforgetapi.netlify.app/winteritems`)
                             .then(res => {
                                 const itemsList = res.data;
 
