@@ -143,7 +143,7 @@ function SearchBar({locationInput, setLocationInput}) {
                     <input 
                         className="search__input input" 
                         type="text" 
-                        placeholder='Enter your destination (e.g., Vancouver, CA or Vancouver, US)' 
+                        placeholder='Enter your destination (e.g., Toronto, Vancouver, CA or Vancouver, US)' 
                         value={locationInput} 
                         onChange={handleSearchInput}
                     />
