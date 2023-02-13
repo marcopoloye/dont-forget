@@ -46,15 +46,17 @@ function SignUpPage () {
                 email: e.target[2].value,
                 password: e.target[3].value
             })
+            .then(
+                setSuccess('Sign up successful! Click here to return to login'),
+                setFirstNameInput(''),
+                setLastNameInput(''),
+                setEmailInput(''),
+                setPasswordInput('')
+            )
             .catch (error => {
-                console.log('Error signing up', error);
+                console.log('Error signing up', error)
+                setSuccess('Sign up error, try again')
             });
-            
-            setFirstNameInput('');
-            setLastNameInput('');
-            setEmailInput('');
-            setPasswordInput('');
-            setSuccess('Sign up successful! Click here to return to login');
         } else {
             console.log('empty form inputs');
         };
