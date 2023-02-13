@@ -2,7 +2,7 @@
 
 Don't Forget is a checklist style app designed to help forgetful travelers remember what to pack. Simply search for a destination and the app will suggest a list of items depending on the weather at your destination!
 
-https://dont-forget-2022.herokuapp.com/
+https://dontforget.netlify.app/
 
 ## Features
 - Simple and intuitive UI
